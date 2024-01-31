@@ -1,6 +1,41 @@
 # Health-Record-System
 The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project 
 
+## Text Based - Flow Chart 
+```
+
+    Start:
+        System initialization and login.
+
+    Dashboard:
+        Display key metrics and notifications.
+
+    Patient Records:
+        Choose "Patient Records" option.
+        Enter or search for a patient's information.
+
+    Data Entry:
+        Record or update patient data using user-friendly forms.
+
+    Appointment Management:
+        Navigate to "Appointment Scheduler."
+        Set, reschedule, or cancel appointments.
+
+    Data Viewing:
+        Access "View Records" for reviewing patient history and details.
+
+    Security Check:
+        Verify user authentication.
+
+    Notification System:
+        Automated reminders for upcoming appointments.
+
+    End:
+        Logout or exit the system.
+
+```
+
+
 ##  Setup Virtual Enviroment:
 
 #### Python 2:
@@ -50,41 +85,6 @@ $ source myvenv/bin/activate
 
 ```
 (healthvenv) ~/health_system$ python manage.py runserver   
-```
-
-
-## Text Based - Flow Chart 
-```
-
-    Start:
-        System initialization and login.
-
-    Dashboard:
-        Display key metrics and notifications.
-
-    Patient Records:
-        Choose "Patient Records" option.
-        Enter or search for a patient's information.
-
-    Data Entry:
-        Record or update patient data using user-friendly forms.
-
-    Appointment Management:
-        Navigate to "Appointment Scheduler."
-        Set, reschedule, or cancel appointments.
-
-    Data Viewing:
-        Access "View Records" for reviewing patient history and details.
-
-    Security Check:
-        Verify user authentication.
-
-    Notification System:
-        Automated reminders for upcoming appointments.
-
-    End:
-        Logout or exit the system.
-
 ```
 
 ## Migrate Health Record System
