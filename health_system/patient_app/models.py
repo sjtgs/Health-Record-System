@@ -20,6 +20,7 @@ class Province(models.Model):
 
 # Created Town models
 class Town(models.Model):
+    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.CharField(max_length=100)
 
