@@ -86,3 +86,13 @@ $ source myvenv/bin/activate
         Logout or exit the system.
 
 ```
+
+## Doctor App 
+```
+(healthvenv) ~/health_system$ python manage.py startapp doctor_app
+```
+
+## Patient App
+```
+(healthvenv) ~/health_system$ python manage.py startapp patient_app
+```
