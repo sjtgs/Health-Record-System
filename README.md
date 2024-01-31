@@ -51,3 +51,38 @@ $ source myvenv/bin/activate
 ```
 (healthvenv) ~/health_system$ python manage.py runserver   
 ```
+
+
+## Text Based - Flow Chart 
+```
+
+    Start:
+        System initialization and login.
+
+    Dashboard:
+        Display key metrics and notifications.
+
+    Patient Records:
+        Choose "Patient Records" option.
+        Enter or search for a patient's information.
+
+    Data Entry:
+        Record or update patient data using user-friendly forms.
+
+    Appointment Management:
+        Navigate to "Appointment Scheduler."
+        Set, reschedule, or cancel appointments.
+
+    Data Viewing:
+        Access "View Records" for reviewing patient history and details.
+
+    Security Check:
+        Verify user authentication.
+
+    Notification System:
+        Automated reminders for upcoming appointments.
+
+    End:
+        Logout or exit the system.
+
+```
