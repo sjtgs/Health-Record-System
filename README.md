@@ -87,12 +87,29 @@ $ source myvenv/bin/activate
 
 ```
 
-## Doctor App 
+## Migrate Health Record System
+```
+(healthvenv) ~/health_system$ python manage.py migrate 
+```
+
+## Create Doctor App 
 ```
 (healthvenv) ~/health_system$ python manage.py startapp doctor_app
 ```
 
-## Patient App
+#### Migrate the Doctor App
+```
+(healthvenv) ~/health_system$ python manage.py makemigrations doctor_app
+(healthvenv) ~/health_system$ python manage.py migrate doctor_app
+```
+
+## Create Patient App
 ```
 (healthvenv) ~/health_system$ python manage.py startapp patient_app
+```
+
+#### Migrate the Patient App
+```
+(healthvenv) ~/health_system$ python manage.py makemigrations patient_app
+(healthvenv) ~/health_system$ python manage.py makemigrations patient_app
 ```
