@@ -41,20 +41,20 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 #### Python 2:
 
 ```
-> python -m venv healthvenv
+~$ python -m venv healthvenv
 ```
 
 #### Python 3:
 
 ```
-> python3 -m venv healthvenv
+~$ python3 -m venv healthvenv
 ```
 
 ## Activate the Virtual Enviroment 
 
 ### Windows
 ```
-> myvenv\Scripts\activate
+~$ myvenv\Scripts\activate
 ```
 
 ### Linux and OS X
