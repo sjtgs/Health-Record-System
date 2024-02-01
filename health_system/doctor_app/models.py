@@ -1,6 +1,7 @@
 from django.db import models
 
-from patient_app.models import Country, Province, Town, MedicalInformation
+from insurance_app.models import Country, Province, Town
+from patient_app.models import MedicalInformation
 
 
 # Created Doctor model to store Doctor Information

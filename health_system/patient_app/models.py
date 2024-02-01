@@ -1,31 +1,6 @@
 from django.db import models
 
-
-# Created Country Model
-class Country(models.Model):
-    countries = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.countries}"
-
-
-# Created Province Model
-class Province(models.Model):
-    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
-    provinces = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.provinces}"
-
-
-# Created Town models
-class Town(models.Model):
-    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
-    provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
-    towns = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.provinces} {self.towns}"
+from insurance_app.models import Country, Province, Town, InusranceCompany
 
 
 # Created Medical Information
@@ -71,6 +46,7 @@ class Patient(models.Model):
     diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
     treatment_plan = models.TextField()
     prescription = models.TextField()
+    insurance = models.ForeignKey(InusranceCompany, on_delete=models.CASCADE)
     # Contact information
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)

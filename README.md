@@ -54,12 +54,12 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 
 ### Windows
 ```
-~$ myvenv\Scripts\activate
+~$ healthvenv\Scripts\activate
 ```
 
 ### Linux and OS X
 ```
-$ source myvenv/bin/activate
+$ source healthvenv/bin/activate
 ```
 
 ## Installing Health System Record Requirements 

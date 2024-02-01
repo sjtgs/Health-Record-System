@@ -1,34 +1,10 @@
 from django.contrib import admin
 from .models import (
-    Country,
-    Province,
-    Town,
     MedicalInformation,
     Diagnosis,
     Patient,
     PatientImage,
 )
-
-
-@admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
-    list_display = ("countries",)
-    search_fields = ("countries",)
-    list_filter = ("countries",)
-
-
-@admin.register(Province)
-class ProvinceAdmin(admin.ModelAdmin):
-    list_display = ("countries", "provinces")
-    search_fields = ("countries", "provinces")
-    list_filter = ("countries", "provinces")
-
-
-@admin.register(Town)
-class TownAdmin(admin.ModelAdmin):
-    list_display = ("countries", "provinces", "towns")
-    search_fields = ("countries", "provinces", "towns")
-    list_filter = ("countries", "provinces", "towns")
 
 
 @admin.register(MedicalInformation)
@@ -57,8 +33,15 @@ class PatientAdmin(admin.ModelAdmin):
         "phone_number",
         "created_at",
         "updated_at",
+        "insurance",
     )
-    search_fields = ("first_name", "last_name", "email", "phone_number")
+    search_fields = (
+        "first_name",
+        "last_name",
+        "email",
+        "phone_number",
+        "insurance",
+    )
     list_filter = ("gender", "created_at", "updated_at")
 
 
