@@ -7,3 +7,4 @@ django-filter
 django-rest-swagger
 bootstrap4
 crispy-bootstrap4 
+django-redis

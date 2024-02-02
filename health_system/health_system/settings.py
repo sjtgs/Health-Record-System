@@ -20,12 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "Secret Key"
+SECRET_KEY = "SECRET KEY"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Celery Configuration
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
 
 
 # Application definition
@@ -44,7 +48,11 @@ INSTALLED_APPS = [
     "nurse_app",
     "pharmacy_app",
     "rest_framework",
+    # "channels",
 ]
+
+# ASGI_APPLICATION = 'health_system.routing.application'
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

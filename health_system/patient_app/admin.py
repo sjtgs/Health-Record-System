@@ -24,6 +24,7 @@ class DiagnosisAdmin(admin.ModelAdmin):
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     list_display = (
+        "user",
         "auto_id",
         "first_name",
         "last_name",
@@ -36,13 +37,14 @@ class PatientAdmin(admin.ModelAdmin):
         "insurance",
     )
     search_fields = (
+        "user",
         "first_name",
         "last_name",
         "email",
         "phone_number",
         "insurance",
     )
-    list_filter = ("gender", "created_at", "updated_at")
+    list_filter = ("user", "gender", "created_at", "updated_at")
 
 
 @admin.register(PatientImage)

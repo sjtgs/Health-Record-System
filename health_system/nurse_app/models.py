@@ -1,6 +1,7 @@
 from django.db import models
 from insurance_app.models import Country, Province, Town
-from patient_app.models import MedicalInformation
+from doctor_app.models import Doctor
+from patient_app.models import MedicalInformation, Patient
 
 
 #  Nurse Model to store Information
@@ -48,3 +49,13 @@ class NurseImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.doctor.first_name} {self.doctor.last_name}"
+
+
+class Appointment(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    appointment_date = models.DateTimeField()
+    purpose = models.TextField()
+
+    def __str__(self):
+        return f"{self.doctor.first_name} {self.doctor.last_name} - {self.patient.first_name} {self.patient.last_name}"
