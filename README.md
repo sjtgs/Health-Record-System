@@ -124,3 +124,25 @@ $ source healthvenv/bin/activate
 (healthvenv) ~/health_system$ python manage.py makemigrations insurance_app
 (healthvenv) ~/health_system$ python manage.py migrate insurance_app
 ```
+
+## Create Nurse  App 
+```
+(healthvenv) ~/health_system$ python manage.py startapp nurse_app
+```
+
+#### Migrate the Nurse App
+```
+(healthvenv) ~/health_system$ python manage.py makemigrations nurse_app
+(healthvenv) ~/health_system$ python manage.py migrate nurse_app
+```
+
+## Create Dashboard  App 
+```
+(healthvenv) ~/health_system$ python manage.py startapp nurse_app
+```
+
+#### Migrate the Dashboard App
+```
+(healthvenv) ~/health_system$ python manage.py makemigrations dashboard_app
+(healthvenv) ~/health_system$ python manage.py migrate dashboard_app
+```
