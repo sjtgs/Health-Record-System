@@ -25,10 +25,15 @@ class Diagnosis(models.Model):
 # Created Patient model. This model stores Patient Information
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
     ]
+
+    BLOOD_CHOICES = [("A", "BLOOD A"), ("B", "BLOOD B"), ("O", "BLOOD O")]
+    UNIT_CHOICES = [("U1", "UNIT 1"), ("U2", "UNIT 2"), ("U3", "UNIT 3")]
+    PATIENT_TYPE_CHOICES = [("OP", "OUTWARD PATIENT"), ("IP", "INWARD PATIENT")]
 
     # Basic Patient Information
     auto_id = models.AutoField(primary_key=True)
@@ -37,6 +42,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     nrc = models.CharField(max_length=100)
+    patient_type = models.CharField(max_length=3, choices=PATIENT_TYPE_CHOICES)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.ForeignKey(Town, on_delete=models.CASCADE)
     address = models.TextField()
@@ -44,11 +50,14 @@ class Patient(models.Model):
     # Medical information
     hospitals = models.ForeignKey(MedicalInformation, on_delete=models.CASCADE)
     medical_history = models.TextField()
+    blood_type = models.CharField(max_length=1, choices=BLOOD_CHOICES)
     diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
+    patient_unit = models.CharField(max_length=3, choices=UNIT_CHOICES)
     treatment_plan = models.TextField()
     prescription = models.TextField()
     insurance = models.ForeignKey(InsuranceCompany, on_delete=models.CASCADE)
     # Contact information
+
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
 
