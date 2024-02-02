@@ -1,6 +1,6 @@
 from django.db import models
-
-from insurance_app.models import Country, Province, Town, InusranceCompany
+from insurance_app.models import Country, Province, Town, InsuranceCompany
+from django.contrib.auth.models import User
 
 
 # Created Medical Information
@@ -24,6 +24,7 @@ class Diagnosis(models.Model):
 
 # Created Patient model. This model stores Patient Information
 class Patient(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
@@ -46,7 +47,7 @@ class Patient(models.Model):
     diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
     treatment_plan = models.TextField()
     prescription = models.TextField()
-    insurance = models.ForeignKey(InusranceCompany, on_delete=models.CASCADE)
+    insurance = models.ForeignKey(InsuranceCompany, on_delete=models.CASCADE)
     # Contact information
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)

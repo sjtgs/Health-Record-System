@@ -25,10 +25,10 @@ class Town(models.Model):
     towns = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.provinces} {self.towns}"
+        return f"{self.towns}"
 
 
-class InusranceCompany(models.Model):
+class InsuranceCompany(models.Model):
     countries = models.ForeignKey(Country, on_delete=models.CASCADE)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.ForeignKey(Town, on_delete=models.CASCADE)

@@ -1,17 +1,16 @@
 from django.db import models
-
 from insurance_app.models import Country, Province, Town
 from patient_app.models import MedicalInformation
 
 
-# Created Doctor model to store Doctor Information
-class Doctor(models.Model):
+#  Nurse Model to store Information
+class Nurse(models.Model):
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
     ]
 
-    # Basic Doctor Information
+    # Basic Nurse Information
     auto_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -38,12 +37,12 @@ class Doctor(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name}{self.last_name}"
 
 
-class DoctorImage(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="mdeical_stuff_images/doctor_images/")
+class NurseImage(models.Model):
+    nurse = models.ForeignKey(Nurse, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="medical_stuff_images/nurse_images/")
     description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
