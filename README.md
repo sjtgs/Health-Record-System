@@ -138,7 +138,7 @@ $ source healthvenv/bin/activate
 
 ## Create Dashboard  App 
 ```
-(healthvenv) ~/health_system$ python manage.py startapp nurse_app
+(healthvenv) ~/health_system$ python manage.py startapp dashboard_app
 ```
 
 #### Migrate the Dashboard App
