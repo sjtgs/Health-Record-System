@@ -149,5 +149,5 @@ $ source healthvenv/bin/activate
 
 ### Dashboard
 ```
-![Dashboard](images/Health Record SyStem Dashboard.png)
+![alt text](<health_system/images/Health Record SyStem Dashboard.png>)
 ```
