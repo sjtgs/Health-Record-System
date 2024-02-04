@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Country, Province, Town, InusranceCompany
+from .models import Country, Province, Town, InsuranceCompany
 
 
 @admin.register(Country)
@@ -24,7 +24,7 @@ class TownAdmin(admin.ModelAdmin):
     list_filter = ("countries", "provinces", "towns")
 
 
-@admin.register(InusranceCompany)
+@admin.register(InsuranceCompany)
 class InusranceCompanyAdmin(admin.ModelAdmin):
     list_display = (
         "countries",
