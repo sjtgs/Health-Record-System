@@ -146,3 +146,8 @@ $ source healthvenv/bin/activate
 (healthvenv) ~/health_system$ python manage.py makemigrations dashboard_app
 (healthvenv) ~/health_system$ python manage.py migrate dashboard_app
 ```
+
+### Dashboard
+```
+![Dashboard](images/Health Record SyStem Dashboard.png)
+```
