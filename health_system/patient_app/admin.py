@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.http import HttpResponse
 import csv
+
+# from reportlab.pdfgen import canvas
+# from django.utils.timezone import now
 from .models import (
     MedicalInformation,
     Diagnosis,
@@ -74,8 +77,8 @@ export_patients.short_description = "Export selected patients to CSV"
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     list_display = (
-        "user",
         "auto_id",
+        "user",
         "first_name",
         "last_name",
         "date_of_birth",

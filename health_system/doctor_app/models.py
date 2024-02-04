@@ -1,11 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 from insurance_app.models import Country, Province, Town
 from patient_app.models import MedicalInformation
 
 
 # Created Doctor model to store Doctor Information
 class Doctor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
@@ -40,10 +41,18 @@ class Doctor(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    def save(self, *args, **kwargs):
+        # Check if the user doesn't exist, Create new one
+        if not self.user:
+            username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
+            self.user = User.objects.create(username=username)
+
+        super().save(*args, **kwargs)
+
 
 class DoctorImage(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="mdeical_stuff_images/doctor_images/")
+    image = models.ImageField(upload_to="medical_stuff_images/doctor_images/")
     description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

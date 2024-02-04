@@ -55,6 +55,7 @@ export_doctors.short_description = "Export selected Doctors to CSV"
 class DoctorAdmin(admin.ModelAdmin):
     list_display = (
         "auto_id",
+        "user",
         "first_name",
         "last_name",
         "date_of_birth",

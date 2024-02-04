@@ -7,6 +7,7 @@ from .models import Nurse, NurseImage, Appointment
 class NurseAdmin(admin.ModelAdmin):
     list_display = (
         "auto_id",
+        "user",
         "first_name",
         "last_name",
         "date_of_birth",
@@ -41,7 +42,12 @@ class NurseImageAdmin(admin.ModelAdmin):
 
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
-    list_display = ("doctor", "patient", "appointment_date", "purpose")
+    list_display = (
+        "doctor",
+        "patient",
+        "appointment_date",
+        "purpose",
+    )
     search_fields = (
         "doctor__first_name",
         "doctor__last_name",

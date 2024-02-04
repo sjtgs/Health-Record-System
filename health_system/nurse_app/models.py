@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from insurance_app.models import Country, Province, Town
 from doctor_app.models import Doctor
 from patient_app.models import MedicalInformation, Patient
@@ -6,6 +7,7 @@ from patient_app.models import MedicalInformation, Patient
 
 #  Nurse Model to store Information
 class Nurse(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
@@ -40,6 +42,13 @@ class Nurse(models.Model):
     def __str__(self):
         return f"{self.first_name}{self.last_name}"
 
+    def save(self, *args, **kwargs):
+        # Check if the username for the Nurse exist, if it doesn't create a new one
+        if not self.user:
+            username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
+            self.user = User.objects.create(username=username)
+        super().save(*args, **kwargs)
+
 
 class NurseImage(models.Model):
     nurse = models.ForeignKey(Nurse, on_delete=models.CASCADE)
@@ -58,4 +67,4 @@ class Appointment(models.Model):
     purpose = models.TextField()
 
     def __str__(self):
-        return f"{self.doctor.first_name} {self.doctor.last_name} - {self.patient.first_name} {self.patient.last_name}"
+        return f"{self.doctor.first_name} {self.doctor.last_name} - {self.patient.first_name} {self.patient.last_name}-{self.patient.patient_unit}"

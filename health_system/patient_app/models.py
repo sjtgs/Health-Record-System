@@ -1,6 +1,6 @@
 from django.db import models
-from insurance_app.models import Country, Province, Town, InsuranceCompany
 from django.contrib.auth.models import User
+from insurance_app.models import Country, Province, Town, InsuranceCompany
 
 
 # Created Medical Information
@@ -67,6 +67,14 @@ class Patient(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    def save(self, *args, **kwargs):
+        # Check if the user doesn't exist, create a new one
+        if not self.user:
+            username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
+            self.user = User.objects.create(username=username)
+
+        super().save(*args, **kwargs)
 
 
 # Create Patient Image model to store the images for each patient
