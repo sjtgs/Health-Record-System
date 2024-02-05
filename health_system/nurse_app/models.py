@@ -43,10 +43,11 @@ class Nurse(models.Model):
         return f"{self.first_name}{self.last_name}"
 
     def save(self, *args, **kwargs):
-        # Check if the username for the Nurse exist, if it doesn't create a new one
+        # Check if the username for the Nurse exist, if it doesn't create a new one.The username and the password same
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
-            self.user = User.objects.create(username=username)
+            password = username
+            self.user = User.objects.create(username=username, password=password)
         super().save(*args, **kwargs)
 
 
