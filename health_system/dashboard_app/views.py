@@ -8,6 +8,6 @@ def Home(request):
     patients = Patient.objects.all()
     return render(
         request,
-        "dashboard/index.html",
+        "website/index.html",
         {"patients": patients, "patients_reviews": patients_reviews},
     )
