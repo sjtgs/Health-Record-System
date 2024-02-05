@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Nurse
 
 
-def NurseHome(request):
+# Show the List the of the Nurse Records
+def NurseLists(request):
     nurses = Nurse.objects.all()
-    return render(request, "nurse/nurse_list.html", {"nurses": nurses})
+    return render(request, "website/nurse_list.html", {"nurses": nurses})
