@@ -4,12 +4,12 @@ from rest_framework.routers import DefaultRouter
 from .views import DoctorViewSet
 from . import views
 
-router = DefaultRouter()
-router.register(r"doctors", DoctorViewSet)
+doctor_router = DefaultRouter()
+doctor_router.register(r"doctors", DoctorViewSet)
 
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("", include(doctor_router.urls)),
     path("patient-lists/", views.PatientsLists, name="patient-lists"),
     path("doctor-lists/", views.DoctorLists, name="doctor-lists"),
     path("nurse-lists/", views.NurseLists, name="nurse-lists"),
