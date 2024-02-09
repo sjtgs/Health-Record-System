@@ -3,6 +3,8 @@
 # Health-Record-System
 The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project 
 
+![alt text](<health_system/images/Health Record SyStem Dashboard - HRS.png>)
+
 ## Text Based - Flow Chart 
 ```
 
@@ -37,8 +39,7 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 
 ```
 
-
-##  Setup Virtual Enviroment:
+##  Setup Health Record SyStem :
 
 #### Python 2:
 
@@ -52,19 +53,19 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 ~$ python3 -m venv healthvenv
 ```
 
-## Activate the Virtual Enviroment 
+### Activate the Virtual Enviroment 
 
-### Windows
+#### Windows
 ```
 ~$ healthvenv\Scripts\activate
 ```
 
-### Linux and OS X
+#### Linux and OS X
 ```
 $ source healthvenv/bin/activate
 ```
 
-## Installing Health System Record Requirements 
+### Installing Health System Record Requirements 
 
 ```
 (healthvenv) ~$ python -m pip install --upgrade pippython -m pip install --upgrade pip
@@ -94,64 +95,34 @@ $ source healthvenv/bin/activate
 (healthvenv) ~/health_system$ python manage.py migrate 
 ```
 
-## Create Doctor App 
+## Health Record System Application :
+
+### Dashboard  App 
 ```
-(healthvenv) ~/health_system$ python manage.py startapp doctor_app
+The Dashboard application serves as a centralized platform for healthcare administration, providing comprehensive insights into patient records, appointments, and review schedules. Built on Django, it offers administrators a user-friendly interface to monitor and manage various aspects of patient care, facilitating informed decision-making and streamlined operations. From patient records to appointment scheduling and review dates, the Dashboard ensures efficient management of healthcare services, optimizing overall performance and enhancing patient outcomes.
 ```
 
-#### Migrate the Doctor App
+### Doctor App 
 ```
-(healthvenv) ~/health_system$ python manage.py makemigrations doctor_app
-(healthvenv) ~/health_system$ python manage.py migrate doctor_app
-```
-
-## Create Patient App
-```
-(healthvenv) ~/health_system$ python manage.py startapp patient_app
+The Doctor App, developed with Django, facilitates the management of doctor profiles, encompassing personal details, contact information, medical qualifications, and specialization. It incorporates robust user authentication to ensure secure access to doctor records. Additionally, the app enables doctors to view patient records, including medical histories, diagnoses, treatment plans, and prescriptions, facilitating informed decision-making in patient care. With features for appointment scheduling and patient referrals, the Doctor App streamlines administrative tasks and fosters efficient healthcare delivery.
 ```
 
-#### Migrate the Patient App
+### Nurse  App 
 ```
-(healthvenv) ~/health_system$ python manage.py makemigrations patient_app
-(healthvenv) ~/health_system$ python manage.py makemigrations patient_app
-```
-
-## Create Insurance  App 
-```
-(healthvenv) ~/health_system$ python manage.py startapp insurance_app
+The Nurse App, built on Django, streamlines the management of nurse profiles, encompassing personal details, contact information, medical qualifications, and specialization. It integrates robust user authentication to ensure secure access to nurse records. Additionally, the app empowers nurses to access patient records, including medical histories, diagnoses, treatment plans, and prescriptions, facilitating informed decision-making in patient care. With features for appointment scheduling and patient referrals, the Nurse App simplifies administrative tasks and fosters efficient healthcare delivery.
 ```
 
-#### Migrate the Insurance App
+### Patient App
 ```
-(healthvenv) ~/health_system$ python manage.py makemigrations insurance_app
-(healthvenv) ~/health_system$ python manage.py migrate insurance_app
+The Patient App is a Django application designed to manage patient information within a healthcare system. It includes models, views, and templates to facilitate the creation, retrieval, updating, and deletion of patient records. The app allows healthcare providers to store detailed information about patients, such as personal details, medical history, diagnoses, treatments, insurance information, and contact details. Additionally, it supports user authentication and authorization, ensuring that only authorized users can access and modify patient records. The Patient App aims to streamline the management of patient data, enhance communication between healthcare professionals, and improve the overall efficiency of healthcare services.
+
 ```
 
-## Create Nurse  App 
-```
-(healthvenv) ~/health_system$ python manage.py startapp nurse_app
-```
 
-#### Migrate the Nurse App
-```
-(healthvenv) ~/health_system$ python manage.py makemigrations nurse_app
-(healthvenv) ~/health_system$ python manage.py migrate nurse_app
-```
 
-## Create Dashboard  App 
-```
-(healthvenv) ~/health_system$ python manage.py startapp dashboard_app
-```
 
-#### Migrate the Dashboard App
-```
-(healthvenv) ~/health_system$ python manage.py makemigrations dashboard_app
-(healthvenv) ~/health_system$ python manage.py migrate dashboard_app
-```
 
-### Dashboard
 
-![alt text](<health_system/images/Health Record SyStem Dashboard - HRS.png>)
 
 
 
