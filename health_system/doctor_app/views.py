@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
 from patient_app.models import Patient
 from nurse_app.models import Nurse
@@ -26,3 +28,8 @@ def NurseLists(request):
     return render(
         request, "doctor_website/nurse_lists.html", {"nurse_lists": nurse_lists}
     )
+
+
+class DoctorViewSet(viewsets.ModelViewSet):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
