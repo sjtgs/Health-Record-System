@@ -110,12 +110,11 @@ The Nurse App, built on Django, streamlines the management of nurse profiles, en
 
 The Patient App is a Django application designed to manage patient information within a healthcare system. It includes models, views, and templates to facilitate the creation, retrieval, updating, and deletion of patient records. The app allows healthcare providers to store detailed information about patients, such as personal details, medical history, diagnoses, treatments, insurance information, and contact details. Additionally, it supports user authentication and authorization, ensuring that only authorized users can access and modify patient records. The Patient App aims to streamline the management of patient data, enhance communication between healthcare professionals, and improve the overall efficiency of healthcare services.
 
-
-
-
-
-
-
-
-
+##  Health Record SyStem - URLS
+[1]: Dashboard - http://127.0.0.1:8000
+[2]: Doctor/ Doctor Lists - http://127.0.0.1:8000/doctor/doctor-lists/
+[3]: Doctor/ Patient Lists - http://127.0.0.1:8000/doctor/patient-lists/
+[4]: Docotor/ Nurse Lists -  http://127.0.0.1:8000/doctor/nurse-lists/
+[5]: Nurse / Nurse Lists - http://127.0.0.1:8000/nurse/nurse-lists/
+[6]: Nurse / Patient Lists - http://127.0.0.1:8000/nurse/patient-lists/
 

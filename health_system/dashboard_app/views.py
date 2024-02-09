@@ -5,9 +5,9 @@ from .models import PatientReview
 
 def Home(request):
     patients_reviews = PatientReview.objects.all()
-    patients = Patient.objects.all()
+    patient_lists = Patient.objects.all()
     return render(
         request,
         "website/index.html",
-        {"patients": patients, "patients_reviews": patients_reviews},
+        {"patient_lists": patient_lists, "patients_reviews": patients_reviews},
     )

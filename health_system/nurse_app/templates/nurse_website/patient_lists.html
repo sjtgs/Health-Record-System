@@ -6,47 +6,10 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <!-- Patient Review -->
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Patient Review Date
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Doctor</th>
-                                    <th scope="col">Patient</th>
-                                    <th scope="col">Review Date</th>
-                                    <th scope="col">Purpose of Review</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for patient_review in patients_reviews %}
-                                <tr>
-                                    <td>{{ patient_review.doctor }}</td>
-                                    <td>{{ patient_review.patient }}</td>
-                                    <td>{{ patient_review.review_date }}</td>
-                                    <td>{{ patient_review.purpose_review }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- End of Patient Review -->
-
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Patient Record
+                Patient Records
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -82,4 +45,4 @@
         </div>
     </div>
 </main>
-{% endblock %}
+{% endblock%}
