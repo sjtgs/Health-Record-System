@@ -117,7 +117,7 @@ The Patient App is a Django application designed to manage patient information w
 <br>
 [3]: Doctor/ Patient Lists - http://127.0.0.1:8000/doctor/patient-lists/ 
 <br> 
-[4]: Docotor/ Nurse Lists -  http://127.0.0.1:8000/doctor/nurse-lists/ 
+[4]: Doctor/ Nurse Lists -  http://127.0.0.1:8000/doctor/nurse-lists/ 
 <br>
 [5]: Nurse / Nurse Lists - http://127.0.0.1:8000/nurse/nurse-lists/
 <br>
