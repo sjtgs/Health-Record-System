@@ -112,9 +112,14 @@ The Patient App is a Django application designed to manage patient information w
 
 ##  Health Record SyStem - URLS
 [1]: Dashboard - http://127.0.0.1:8000
-[2]: Doctor/ Doctor Lists - http://127.0.0.1:8000/doctor/doctor-lists/
-[3]: Doctor/ Patient Lists - http://127.0.0.1:8000/doctor/patient-lists/
-[4]: Docotor/ Nurse Lists -  http://127.0.0.1:8000/doctor/nurse-lists/
+<br>
+[2]: Doctor/ Doctor Lists - http://127.0.0.1:8000/doctor/doctor-lists/  
+<br>
+[3]: Doctor/ Patient Lists - http://127.0.0.1:8000/doctor/patient-lists/ 
+<br> 
+[4]: Docotor/ Nurse Lists -  http://127.0.0.1:8000/doctor/nurse-lists/ 
+<br>
 [5]: Nurse / Nurse Lists - http://127.0.0.1:8000/nurse/nurse-lists/
+<br>
 [6]: Nurse / Patient Lists - http://127.0.0.1:8000/nurse/patient-lists/
 
