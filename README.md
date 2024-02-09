@@ -1,7 +1,7 @@
 [![wakatime](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4.svg)](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4)
 
 # Health-Record-System
-The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project 
+The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project. 
 
 ![alt text](<health_system/images/Health Record SyStem Dashboard - HRS.png>)
 
@@ -75,12 +75,6 @@ $ source healthvenv/bin/activate
 (healthvenv) ~$ python -m pip install -r requirements.txt
 ```
 
-
-## Health Record System Application :
-```
-(healthvenv) ~$  health_system
-```
-
 ## Running the Health Record System application :
 ```
 (healthvenv) ~$  cd health_system
@@ -98,25 +92,24 @@ $ source healthvenv/bin/activate
 ## Health Record System Application :
 
 ### Dashboard  App 
-```
+
 The Dashboard application serves as a centralized platform for healthcare administration, providing comprehensive insights into patient records, appointments, and review schedules. Built on Django, it offers administrators a user-friendly interface to monitor and manage various aspects of patient care, facilitating informed decision-making and streamlined operations. From patient records to appointment scheduling and review dates, the Dashboard ensures efficient management of healthcare services, optimizing overall performance and enhancing patient outcomes.
-```
+
 
 ### Doctor App 
-```
+
 The Doctor App, developed with Django, facilitates the management of doctor profiles, encompassing personal details, contact information, medical qualifications, and specialization. It incorporates robust user authentication to ensure secure access to doctor records. Additionally, the app enables doctors to view patient records, including medical histories, diagnoses, treatment plans, and prescriptions, facilitating informed decision-making in patient care. With features for appointment scheduling and patient referrals, the Doctor App streamlines administrative tasks and fosters efficient healthcare delivery.
-```
+
 
 ### Nurse  App 
-```
+
 The Nurse App, built on Django, streamlines the management of nurse profiles, encompassing personal details, contact information, medical qualifications, and specialization. It integrates robust user authentication to ensure secure access to nurse records. Additionally, the app empowers nurses to access patient records, including medical histories, diagnoses, treatment plans, and prescriptions, facilitating informed decision-making in patient care. With features for appointment scheduling and patient referrals, the Nurse App simplifies administrative tasks and fosters efficient healthcare delivery.
-```
+
 
 ### Patient App
-```
+
 The Patient App is a Django application designed to manage patient information within a healthcare system. It includes models, views, and templates to facilitate the creation, retrieval, updating, and deletion of patient records. The app allows healthcare providers to store detailed information about patients, such as personal details, medical history, diagnoses, treatments, insurance information, and contact details. Additionally, it supports user authentication and authorization, ensuring that only authorized users can access and modify patient records. The Patient App aims to streamline the management of patient data, enhance communication between healthcare professionals, and improve the overall efficiency of healthcare services.
 
-```
 
 
 
