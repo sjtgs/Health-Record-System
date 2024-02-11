@@ -7,9 +7,9 @@ from . import views
 doctor_router = DefaultRouter()
 doctor_router.register(r"doctors", DoctorViewSet)
 
-
+#
 urlpatterns = [
-    path("", include(doctor_router.urls)),
+    path("doctor", include(doctor_router.urls)),
     path("patient-lists/", views.PatientsLists, name="patient-lists"),
     path("doctor-lists/", views.DoctorLists, name="doctor-lists"),
     path("nurse-lists/", views.NurseLists, name="nurse-lists"),

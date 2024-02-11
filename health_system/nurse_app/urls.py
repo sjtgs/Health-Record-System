@@ -9,7 +9,7 @@ nurse_router.register(r"nurses", NurseViewSet)
 
 
 urlpatterns = [
-    path("", include(nurse_router.urls)),
+    path("nurses/", include(nurse_router.urls)),
     path("nurse-lists/", views.NurseLists, name="nurse-lists"),
     path("patient-lists/", views.PatientLists, name="nurse-lists"),
 ]
