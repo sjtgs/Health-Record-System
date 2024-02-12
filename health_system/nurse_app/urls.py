@@ -1,8 +1,7 @@
 # Nurse_app/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import NurseViewSet
-from . import views
+from nurse_app.views import NurseViewSet, NurseLists, PatientLists
 
 nurse_router = DefaultRouter()
 nurse_router.register(r"nurses", NurseViewSet)
@@ -10,6 +9,6 @@ nurse_router.register(r"nurses", NurseViewSet)
 
 urlpatterns = [
     path("nurses/", include(nurse_router.urls)),
-    path("nurse-lists/", views.NurseLists, name="nurse-lists"),
-    path("patient-lists/", views.PatientLists, name="nurse-lists"),
+    path("nurse-lists/", NurseLists, name="nurse-lists"),
+    path("patient-lists/", PatientLists, name="nurse-lists"),
 ]
