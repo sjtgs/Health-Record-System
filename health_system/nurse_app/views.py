@@ -1,3 +1,5 @@
+# nurse_app/views.py
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from forms import NurseLoginForm
@@ -23,6 +25,7 @@ def nurse_login(request):
 
 
 # This Function Displays the list of Entire Nurse Record in the Database
+@login_required
 def NurseLists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -31,6 +34,7 @@ def NurseLists(request):
 
 
 # This Function Display the list of Entire Patient Record in the Database
+@login_required
 def PatientLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -38,6 +42,8 @@ def PatientLists(request):
     )
 
 
+# The API Funtion Displays the list of Nurse Records
+@login_required
 class NurseViewSet(viewsets.ModelViewSet):
     queryset = Nurse.objects.all()
     serializer_class = NurseSerializer

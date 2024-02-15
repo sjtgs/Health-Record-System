@@ -1,3 +1,5 @@
+# doctor_app/views.py
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from forms import DoctorLoginForm
@@ -24,6 +26,7 @@ def doctor_login(request):
 
 
 # This Function Displays the list of Entire Doctor Record in the Database
+@login_required
 def DoctorLists(request):
     doctor_lists = Doctor.objects.all()
     return render(
@@ -32,6 +35,7 @@ def DoctorLists(request):
 
 
 # This Function Displays the list of Entire Patient Record in the Database# Show the List the of the Patient Records
+@login_required
 def PatientsLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -40,6 +44,7 @@ def PatientsLists(request):
 
 
 # This Function Displays the list of Entire Nurse Record in the Database
+@login_required
 def NurseLists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -47,6 +52,8 @@ def NurseLists(request):
     )
 
 
+# This API function that displays the list Entire Doctors Records
+@login_required
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
