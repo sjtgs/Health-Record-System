@@ -1,9 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from forms import DoctorLoginForm
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
 from patient_app.models import Patient
 from nurse_app.models import Nurse
+
+
+def doctor_login(request):
+    if request.method == "POST":
+        form = DoctorLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("dashboard")
+        else:
+            form = DoctorLoginForm()
+        return render(request, "doctor_website/doctor_login.html", {"form": form})
 
 
 # This Function Displays the list of Entire Doctor Record in the Database
