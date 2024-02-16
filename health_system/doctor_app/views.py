@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from forms import DoctorLoginForm
+from .forms import DoctorLoginForm
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
@@ -53,7 +53,8 @@ def NurseLists(request):
 
 
 # This API function that displays the list Entire Doctors Records
-@login_required
+
+
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer

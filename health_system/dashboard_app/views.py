@@ -4,7 +4,7 @@ from .models import PatientReview
 
 
 def HomePage(request):
-    return (request, "website/index.html", {})
+    return render(request, "website/index.html", {})
 
 
 def Dashboard(request):

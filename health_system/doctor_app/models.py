@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from insurance_app.models import Country, Province, Town
 from patient_app.models import MedicalInformation
 
@@ -45,8 +45,8 @@ class Doctor(models.Model):
         # Check if the user doesn't exist, Create new one.The username and the password same
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
-            password = password
-            self.user = User.objects.create(username=username, password=password)
+            password = username
+            self.user = User.objects.create_user(username=username, password=password)
 
         super().save(*args, **kwargs)
 

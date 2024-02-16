@@ -49,7 +49,15 @@ INSTALLED_APPS = [
     "pharmacy_app",
     "rest_framework",
     # "channels",
+    "crispy_forms",
+    "bootstrap4",
+    "crispy_bootstrap4",
 ]
+
+CRISPY_TEMPLATE_PACK = "uni_form"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
 
 # ASGI_APPLICATION = 'health_system.routing.application'
 

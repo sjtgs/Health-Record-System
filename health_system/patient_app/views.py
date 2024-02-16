@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from forms import PatientLoginForm
+from .forms import PatientLoginForm
 from rest_framework import viewsets
 from patient_app.serializers import PatientSerializer
 from patient_app.models import Patient
@@ -35,7 +35,8 @@ def PatientLists(request):
 
 
 # This API Funtion Displays the list of Patient Records
-@login_required
+
+
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
