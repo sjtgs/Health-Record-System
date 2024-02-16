@@ -22,6 +22,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
+    path(
+        "accounts/logout/", auth_views.LogoutView.as_view(next_page="/"), name="logout"
+    ),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", include("dashboard_app.urls")),
     path("nurse/", include("nurse_app.urls")),
