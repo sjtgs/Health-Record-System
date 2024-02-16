@@ -1,6 +1,6 @@
 # doctor_app/views.py
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import DoctorLoginForm, DoctorForm
 from rest_framework import viewsets
@@ -66,6 +66,22 @@ def doctor_form(request):
             return redirect("doctor-lists")
     else:
         form = DoctorForm()
+    return render(request, "doctor_website/doctor_form.html", {"form": form})
+
+
+@login_required
+def doctor_form_edit(request, auto_id):
+    post = get_object_or_404(Doctor, auto_id=auto_id)
+    if request.method == "POST":
+        form = DoctorForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "doctor-lists",
+            )
+    else:
+        form = DoctorForm(instance=post)
     return render(request, "doctor_website/doctor_form.html", {"form": form})
 
 

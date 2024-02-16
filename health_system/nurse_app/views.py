@@ -1,6 +1,6 @@
 # nurse_app/views.py
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import NurseLoginForm, NurseForm
 from rest_framework import viewsets
@@ -53,6 +53,22 @@ def nurse_form(request):
             return redirect("nurse-lists")
     else:
         form = NurseForm()
+    return render(request, "nurse_website/nurse_form.html", {"form": form})
+
+
+@login_required
+def nurse_form_edit(request, auto_id):
+    post = get_object_or_404(Nurse, auto_id=auto_id)
+    if request.method == "POST":
+        form = NurseForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "nurse-lists",
+            )
+    else:
+        form = NurseForm(instance=post)
     return render(request, "nurse_website/nurse_form.html", {"form": form})
 
 

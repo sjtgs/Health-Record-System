@@ -7,6 +7,7 @@ from nurse_app.views import (
     PatientLists,
     nurse_login,
     nurse_form,
+    nurse_form_edit,
 )
 
 nurse_router = DefaultRouter()
@@ -19,4 +20,5 @@ urlpatterns = [
     path("nurse-lists/", NurseLists, name="nurse-lists"),
     path("patient-lists/", PatientLists, name="nurse-lists"),
     path("nurse-form", nurse_form, name="nurse-form"),
+    path("<int:auto_id>/nurse-form-edit/", nurse_form_edit, name="nurse-form-edit"),
 ]

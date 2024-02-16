@@ -1,6 +1,6 @@
 # patient_app/views.py
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import PatientLoginForm, PatientForm
 from rest_framework import viewsets
@@ -54,6 +54,22 @@ def patient_form(request):
     else:
         form = PatientForm()
     return render(request, "patient_website/patient_form.html", {})
+
+
+@login_required
+def patient_form_edit(request, auto_id):
+    post = get_object_or_404(Patient, auto_id=auto_id)
+    if request.method == "POST":
+        form = PatientForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "patient-lists",
+            )
+    else:
+        form = PatientForm(instance=post)
+    return render(request, "patient_website/patient_form.html", {"form": form})
 
 
 # def is_patient(user):
