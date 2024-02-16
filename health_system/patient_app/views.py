@@ -28,9 +28,9 @@ def patient_login(request):
 
 @login_required
 def PatientLists(request):
-    parent_lists = Patient.objects.all()
+    patient_lists = Patient.objects.all()
     return render(
-        request, "patient_website/patient_list.html", {"parent_lists": parent_lists}
+        request, "patient_website/patient_list.html", {"patient_lists": patient_lists}
     )
 
 
@@ -53,7 +53,7 @@ def patient_form(request):
             return redirect("patient-lists")
     else:
         form = PatientForm()
-    return render(request, "patient_website/patient_form.html", {})
+    return render(request, "patient_website/patient_form.html", {"form": form})
 
 
 @login_required

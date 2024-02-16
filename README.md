@@ -131,3 +131,15 @@ The Patient App is a Django application designed to manage patient information w
 [8]: API - Nurse /  Lists - http://127.0.0.1:8000/api/nurses/nurses/
 <br>
 [9]: API - Patient / Lists - http://127.0.0.1:8000/api/patients/patients/ 
+<br>
+[10]: Doctor / Form - http://127.0.0.1:8000/doctor/doctor-form/
+<br>
+[11]: Doctor / Form Edit - http://127.0.0.1:8000/doctor/<int:auto_id>/doctor-form-edit/
+<br>
+[12]: Nurse / Form - http://127.0.0.1:8000/nurse/nurse-form/
+<br>
+[13]: Nurse / Form Edit - http://127.0.0.1:8000/nurse/<int:auto_id>/nurse-form-edit/
+<br>
+[14]: Patient / Form - http://127.0.0.1:8000/Patient/patient-form/
+<br>
+[15]: Patient / Form Edit - http://127.0.0.1:8000/patient/<int:auto_id>/patient-form-edit/
