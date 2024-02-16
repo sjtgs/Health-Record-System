@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import NurseLoginForm
+from .forms import NurseLoginForm, NurseForm
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
 from nurse_app.models import Nurse
@@ -42,9 +42,21 @@ def PatientLists(request):
     )
 
 
+# The function Creates a user based on the information Entered
+@login_required
+def nurse_form(request):
+    if request.method == "POST":
+        form = NurseForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("nurse-lists")
+    else:
+        form = NurseForm()
+    return render(request, "nurse_website/nurse_form.html", {"form": form})
+
+
 # The API Funtion Displays the list of Nurse Records
-
-
 class NurseViewSet(viewsets.ModelViewSet):
     queryset = Nurse.objects.all()
     serializer_class = NurseSerializer

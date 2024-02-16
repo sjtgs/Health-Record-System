@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import DoctorLoginForm
+from .forms import DoctorLoginForm, DoctorForm
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
@@ -50,6 +50,23 @@ def NurseLists(request):
     return render(
         request, "doctor_website/nurse_lists.html", {"nurse_lists": nurse_lists}
     )
+
+
+# This Function Displays the Doctor Form
+
+
+# The function Creates a user based on the information Entered
+@login_required
+def doctor_form(request):
+    if request.method == "POST":
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("doctor-lists")
+    else:
+        form = DoctorForm()
+    return render(request, "doctor_website/doctor_form.html", {"form": form})
 
 
 # This API function that displays the list Entire Doctors Records
