@@ -52,9 +52,6 @@ def NurseLists(request):
     )
 
 
-# This Function Displays the Doctor Form
-
-
 # The function Creates a user based on the information Entered
 @login_required
 def doctor_form(request):
@@ -63,7 +60,7 @@ def doctor_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("doctor-lists")
+            return redirect("doctor-detail")
     else:
         form = DoctorForm()
     return render(request, "doctor_website/doctor_form.html", {"form": form})
@@ -78,11 +75,39 @@ def doctor_form_edit(request, auto_id):
             post = form.save(commit=False)
             post.save()
             return redirect(
-                "doctor-lists",
+                "doctor-detail",
             )
     else:
         form = DoctorForm(instance=post)
     return render(request, "doctor_website/doctor_form.html", {"form": form})
+
+
+# Detail of the Doctor
+def doctor_detail(request, auto_id):
+    doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
+    return render(
+        request, "doctor_website/doctor_detail.html", {"doctor_detail": doctor_detail}
+    )
+
+
+# Details of the Patient
+def patient_detail(request, auto_id):
+    patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    return render(
+        request,
+        "doctor_website/patient_detail.html",
+        {"patient_detail": patient_detail},
+    )
+
+
+# Details of the Nurse
+
+
+def nurse_detail(request, auto_id):
+    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    return render(
+        request, "doctor_website/nurse_detail.html", {"nurse_detail": nurse_detail}
+    )
 
 
 # This API function that displays the list Entire Doctors Records
