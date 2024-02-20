@@ -72,6 +72,22 @@ def nurse_form_edit(request, auto_id):
     return render(request, "nurse_website/nurse_form.html", {"form": form})
 
 
+@login_required
+def nurse_detail(request, auto_id):
+    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    return render(
+        request, "nurse_website/nurse_detail.html", {"nurse_detail": nurse_detail}
+    )
+
+
+@login_required
+def patient_detail(request, auto_id):
+    patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    return render(
+        request, "nurse_website/patient_detail.html", {"patient_detail": patient_detail}
+    )
+
+
 # The API Funtion Displays the list of Nurse Records
 class NurseViewSet(viewsets.ModelViewSet):
     queryset = Nurse.objects.all()
