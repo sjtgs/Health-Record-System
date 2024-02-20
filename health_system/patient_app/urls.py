@@ -21,5 +21,5 @@ urlpatterns = [
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
     ),
-    path("patient-detail/<int:auto_id/", patient_detail, name="patient-detail"),
+    path("patient-detail/<int:auto_id>/", patient_detail, name="patient-detail"),
 ]
