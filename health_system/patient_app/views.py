@@ -72,6 +72,16 @@ def patient_form_edit(request, auto_id):
     return render(request, "patient_website/patient_form.html", {"form": form})
 
 
+@login_required
+def patient_detail(request, auto_id):
+    patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    return render(
+        request,
+        "patient_website/patient_detail.html",
+        {"patient_detail": patient_detail},
+    )
+
+
 # def is_patient(user):
 #     return user.groups.filter(name="Patients").exists()
 

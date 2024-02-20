@@ -7,6 +7,7 @@ from patient_app.views import (
     patient_login,
     patient_form,
     patient_form_edit,
+    patient_detail,
 )
 
 patient_router = DefaultRouter()
@@ -20,4 +21,5 @@ urlpatterns = [
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
     ),
+    path("patient-detail/<int:auto_id/", patient_detail, name="patient-detail"),
 ]

@@ -82,6 +82,7 @@ def doctor_form_edit(request, auto_id):
     return render(request, "doctor_website/doctor_form.html", {"form": form})
 
 
+@login_required
 # Detail of the Doctor
 def doctor_detail(request, auto_id):
     doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
@@ -90,6 +91,7 @@ def doctor_detail(request, auto_id):
     )
 
 
+@login_required
 # Details of the Patient
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
@@ -100,9 +102,8 @@ def patient_detail(request, auto_id):
     )
 
 
+@login_required
 # Details of the Nurse
-
-
 def nurse_detail(request, auto_id):
     nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
     return render(
