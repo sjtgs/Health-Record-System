@@ -1,5 +1,6 @@
 # doctor_app/views.py
 from django.contrib.auth.decorators import login_required
+from doctor_app.decorators import doctor_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import DoctorLoginForm, DoctorForm
@@ -27,6 +28,7 @@ def doctor_login(request):
 
 # This Function Displays the list of Entire Doctor Record in the Database
 @login_required
+@doctor_required
 def DoctorLists(request):
     doctor_lists = Doctor.objects.all()
     return render(
@@ -35,7 +37,10 @@ def DoctorLists(request):
 
 
 # This Function Displays the list of Entire Patient Record in the Database# Show the List the of the Patient Records
+
+
 @login_required
+@doctor_required
 def PatientsLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -45,6 +50,7 @@ def PatientsLists(request):
 
 # This Function Displays the list of Entire Nurse Record in the Database
 @login_required
+@doctor_required
 def NurseLists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -54,6 +60,7 @@ def NurseLists(request):
 
 # The function Creates a user based on the information Entered
 @login_required
+@doctor_required
 def doctor_form(request):
     if request.method == "POST":
         form = DoctorForm(request.POST)
@@ -67,6 +74,7 @@ def doctor_form(request):
 
 
 @login_required
+@doctor_required
 def doctor_form_edit(request, auto_id):
     post = get_object_or_404(Doctor, auto_id=auto_id)
     if request.method == "POST":
@@ -83,6 +91,7 @@ def doctor_form_edit(request, auto_id):
 
 
 @login_required
+@doctor_required
 # Detail of the Doctor
 def doctor_detail(request, auto_id):
     doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
@@ -92,6 +101,7 @@ def doctor_detail(request, auto_id):
 
 
 @login_required
+@doctor_required
 # Details of the Patient
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
@@ -103,6 +113,7 @@ def patient_detail(request, auto_id):
 
 
 @login_required
+@doctor_required
 # Details of the Nurse
 def nurse_detail(request, auto_id):
     nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)

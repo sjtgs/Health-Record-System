@@ -1,5 +1,8 @@
 # patient_app/views.py
 from django.contrib.auth.decorators import login_required
+from doctor_app.decorators import doctor_required
+from nurse_app.decorators import nurse_required
+from patient_app.decorators import patient_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import PatientLoginForm, PatientForm
@@ -27,6 +30,9 @@ def patient_login(request):
 
 
 @login_required
+@doctor_required
+@nurse_required
+@patient_required
 def PatientLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -44,6 +50,9 @@ class PatientViewSet(viewsets.ModelViewSet):
 
 # The function Creates a user based on the information Entered
 @login_required
+@doctor_required
+@nurse_required
+@patient_required
 def patient_form(request):
     if request.method == "POST":
         form = PatientForm(request.POST)
@@ -57,6 +66,9 @@ def patient_form(request):
 
 
 @login_required
+@doctor_required
+@nurse_required
+@patient_required
 def patient_form_edit(request, auto_id):
     post = get_object_or_404(Patient, auto_id=auto_id)
     if request.method == "POST":
@@ -73,6 +85,9 @@ def patient_form_edit(request, auto_id):
 
 
 @login_required
+@doctor_required
+@nurse_required
+@patient_required
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
     return render(
