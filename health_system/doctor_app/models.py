@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import Group
 from insurance_app.models import Country, Province, Town
 from patient_app.models import MedicalInformation
 
@@ -49,6 +52,13 @@ class Doctor(models.Model):
             self.user = User.objects.create_user(username=username, password=password)
 
         super().save(*args, **kwargs)
+
+
+@receiver(post_save, sender=User)
+def assign_doctor_group(sender, instance, created, **kwargs):
+    if created and hasattr(instance, "doctor"):
+        doctor_group = Group.objects.get(name="Doctor")
+        instance.groups.add(doctor_group)
 
 
 class DoctorImage(models.Model):
