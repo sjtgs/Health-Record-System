@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from .forms import PatientLoginForm, PatientForm
+from patient_app.forms import PatientLoginForm, PatientForm
 from rest_framework import viewsets
 from patient_app.serializers import PatientSerializer
 from patient_app.models import Patient

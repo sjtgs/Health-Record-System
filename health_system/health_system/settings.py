@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "dashboard_app",
     "insurance_app",
     "nurse_app",
-    "pharmacy_app",
     "rest_framework",
     # "channels",
     "crispy_forms",

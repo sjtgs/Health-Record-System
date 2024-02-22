@@ -1,6 +1,6 @@
 # admin.py
 from django.contrib import admin
-from .models import Nurse, NurseImage, Appointment
+from nurse_app.models import Nurse, NurseImage, Appointment
 
 
 @admin.register(Nurse)

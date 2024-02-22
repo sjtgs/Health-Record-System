@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponse
 import csv
-from .models import Doctor, DoctorImage
+from doctor_app.models import Doctor, DoctorImage
 
 
 def export_doctors(modelsadmin, request, queryset):

@@ -1,9 +1,7 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.auth.models import Group
-from insurance_app.models import Country, Province, Town, InsuranceCompany
+from administration_app.models import Country, Province, Town
+from insurance_app.models import InsuranceCompany
 
 
 # Created Medical Information
@@ -47,6 +45,9 @@ class Patient(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     nrc = models.CharField(max_length=100)
     patient_type = models.CharField(max_length=3, choices=PATIENT_TYPE_CHOICES)
+
+    # Address Information
+    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.ForeignKey(Town, on_delete=models.CASCADE)
     address = models.TextField()
@@ -95,7 +96,7 @@ class Patient(models.Model):
 # Create Patient Image model to store the images for each patient
 class PatientImage(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="patient_images/")
+    image = models.ImageField(upload_to="Images/Medical_Stuff_Images/Patient_Images/")
     description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

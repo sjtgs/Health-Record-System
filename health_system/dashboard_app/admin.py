@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PatientReview
+from dashboard_app.models import PatientReview
 
 
 @admin.register(PatientReview)

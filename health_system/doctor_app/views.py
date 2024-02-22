@@ -1,9 +1,9 @@
 # doctor_app/views.py
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from doctor_app.decorators import doctor_role_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
-from .forms import DoctorLoginForm, DoctorForm
+from doctor_app.forms import DoctorLoginForm, DoctorForm
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor

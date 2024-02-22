@@ -1,9 +1,6 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.auth.models import Group
-from insurance_app.models import Country, Province, Town
+from administration_app.models import Country, Province, Town
 from patient_app.models import MedicalInformation
 
 
@@ -24,6 +21,8 @@ class Doctor(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     nrc = models.CharField(max_length=100)
+
+    # Address Information
     countries = models.ForeignKey(Country, on_delete=models.CASCADE)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.ForeignKey(Town, on_delete=models.CASCADE)
@@ -68,7 +67,7 @@ class Doctor(models.Model):
 
 class DoctorImage(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="medical_stuff_images/doctor_images/")
+    image = models.ImageField(upload_to="Images/Medical_Stuff_Images/Doctor_Images/")
     description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

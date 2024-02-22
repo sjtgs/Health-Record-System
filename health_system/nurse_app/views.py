@@ -3,8 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from nurse_app.decorators import role_required
-
-# from doctor_app.decorators import doctor_required
 from nurse_app.forms import NurseLoginForm, NurseForm
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
