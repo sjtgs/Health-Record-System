@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import Group
 from insurance_app.models import Country, Province, Town, InsuranceCompany
 
 
@@ -25,6 +28,7 @@ class Diagnosis(models.Model):
 # Created Patient model. This model stores Patient Information
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
 
     GENDER_CHOICES = [
         ("M", "Male"),
@@ -73,9 +77,19 @@ class Patient(models.Model):
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
             password = username
+
+            # Create a New Patient User
             self.user = User.objects.create_user(username=username, password=password)
 
+        if not self.group:
+            # Get or create Patient group
+            patient_group, _ = Group.objects.get_or_create(name="Patient")
+            self.group = patient_group
+
         super().save(*args, **kwargs)
+        patient_group, _ = Group.objects.get_or_create(name="Patient")
+        self.user.groups.add(patient_group)
+        self.user.save()
 
 
 # Create Patient Image model to store the images for each patient

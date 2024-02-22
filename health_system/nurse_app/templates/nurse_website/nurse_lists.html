@@ -1,5 +1,7 @@
 {% extends 'website/base.html' %}
 {% block content %}
+
+
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
@@ -29,7 +31,7 @@
                     <tbody>
                         {% for nurse in nurse_lists %}
                         <tr>
-                            <td>{{ nurse.first_name }}</td>
+                            <td><a href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a></td>
                             <td>{{ nurse.last_name }}</td>
                             <td>{{ nurse.date_of_birth }}</td>
                             <td>{{ nurse.gender }}</td>
@@ -45,4 +47,5 @@
         </div>
     </div>
 </main>
+
 {% endblock %}

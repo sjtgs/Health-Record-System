@@ -29,7 +29,9 @@
                     <tbody>
                         {% for patient in patient_lists %}
                         <tr>
-                            <td>{{ patient.first_name }}</td>
+                            <td><a
+                                    href="{% url 'patient-detail' auto_id=patient.auto_id %}">{{ patient.first_name }}</a>
+                            </td>
                             <td>{{ patient.last_name }}</td>
                             <td>{{ patient.date_of_birth }}</td>
                             <td>{{ patient.gender }}</td>

@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import Group
 from insurance_app.models import Country, Province, Town
 from doctor_app.models import Doctor
 from patient_app.models import MedicalInformation, Patient
@@ -8,6 +11,8 @@ from patient_app.models import MedicalInformation, Patient
 #  Nurse Model to store Information
 class Nurse(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
+
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
@@ -47,8 +52,19 @@ class Nurse(models.Model):
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
             password = username
+
+            # Create a New Nurse User
             self.user = User.objects.create_user(username=username, password=password)
+
+        if not self.group:
+            # Get or create Nurse group
+            nurse_group, _ = Group.objects.get_or_create(name="Nurse")
+            self.group = nurse_group
+
         super().save(*args, **kwargs)
+        nurse_group, _ = Group.objects.get_or_create(name="Nurse")
+        self.user.groups.add(nurse_group)
+        self.user.save()
 
 
 class NurseImage(models.Model):

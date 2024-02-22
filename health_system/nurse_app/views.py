@@ -2,7 +2,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from .forms import NurseLoginForm, NurseForm
+from nurse_app.decorators import role_required
+
+# from doctor_app.decorators import doctor_required
+from nurse_app.forms import NurseLoginForm, NurseForm
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
 from nurse_app.models import Nurse
@@ -26,6 +29,7 @@ def nurse_login(request):
 
 # This Function Displays the list of Entire Nurse Record in the Database
 @login_required
+@role_required
 def NurseLists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -70,6 +74,22 @@ def nurse_form_edit(request, auto_id):
     else:
         form = NurseForm(instance=post)
     return render(request, "nurse_website/nurse_form.html", {"form": form})
+
+
+@login_required
+def nurse_detail(request, auto_id):
+    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    return render(
+        request, "nurse_website/nurse_detail.html", {"nurse_detail": nurse_detail}
+    )
+
+
+@login_required
+def patient_detail(request, auto_id):
+    patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    return render(
+        request, "nurse_website/patient_detail.html", {"patient_detail": patient_detail}
+    )
 
 
 # The API Funtion Displays the list of Nurse Records

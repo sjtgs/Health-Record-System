@@ -9,6 +9,9 @@ from doctor_app.views import (
     doctor_login,
     doctor_form,
     doctor_form_edit,
+    doctor_detail,
+    patient_detail,
+    nurse_detail,
 )
 
 doctor_router = DefaultRouter()
@@ -23,4 +26,7 @@ urlpatterns = [
     path("nurse-lists/", NurseLists, name="nurse-lists"),
     path("doctor-form/", doctor_form, name="doctor-form"),
     path("<int:auto_id>/doctor-form-edit/", doctor_form_edit, name="doctor-form-edit"),
+    path("doctor-detail/<int:auto_id>/", doctor_detail, name="doctor-detail"),
+    path("patient-detail/<int:auto_id>/", patient_detail, name="patient-detail"),
+    path("nurse-detail/<int:auto_id>/", nurse_detail, name="nurse-detail"),
 ]
