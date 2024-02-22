@@ -14,7 +14,7 @@ def doctor_role_required(function=None):
         @wraps(function)
         def wrapper(request, *args, **kwargs):
             if not check_role(request.user):
-                return render(request, "forbidden_page.html", status=403)
+                return render(request, "website/forbidden_page.html", status=403)
             return function(request, *args, **kwargs)
 
         return wrapper
