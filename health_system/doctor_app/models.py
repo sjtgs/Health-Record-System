@@ -10,6 +10,8 @@ from patient_app.models import MedicalInformation
 # Created Doctor model to store Doctor Information
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
+
     GENDER_CHOICES = [
         ("M", "Male"),
         ("F", "Female"),
@@ -49,16 +51,19 @@ class Doctor(models.Model):
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
             password = username
+
+            # Create a New Doctor User
             self.user = User.objects.create_user(username=username, password=password)
 
+        if not self.group:
+            # Get or create Doctor group
+            doctor_group, _ = Group.objects.get_or_create(name="Doctor")
+            self.group = doctor_group
+
         super().save(*args, **kwargs)
-
-
-@receiver(post_save, sender=User)
-def assign_doctor_group(sender, instance, created, **kwargs):
-    if created and hasattr(instance, "doctor"):
-        doctor_group = Group.objects.get(name="Doctor")
-        instance.groups.add(doctor_group)
+        doctor_group, _ = Group.objects.get_or_create(name="Doctor")
+        self.user.groups.add(doctor_group)
+        self.user.save()
 
 
 class DoctorImage(models.Model):

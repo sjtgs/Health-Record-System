@@ -2,8 +2,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from nurse_app.decorators import nurse_required
-from doctor_app.decorators import doctor_required
+from nurse_app.decorators import role_required
+
+# from doctor_app.decorators import doctor_required
 from nurse_app.forms import NurseLoginForm, NurseForm
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
@@ -28,8 +29,7 @@ def nurse_login(request):
 
 # This Function Displays the list of Entire Nurse Record in the Database
 @login_required
-@nurse_required
-@doctor_required
+@role_required
 def NurseLists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -39,8 +39,6 @@ def NurseLists(request):
 
 # This Function Display the list of Entire Patient Record in the Database
 @login_required
-@nurse_required
-@doctor_required
 def PatientLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -50,8 +48,6 @@ def PatientLists(request):
 
 # The function Creates a user based on the information Entered
 @login_required
-@nurse_required
-@doctor_required
 def nurse_form(request):
     if request.method == "POST":
         form = NurseForm(request.POST)
@@ -65,8 +61,6 @@ def nurse_form(request):
 
 
 @login_required
-@nurse_required
-@doctor_required
 def nurse_form_edit(request, auto_id):
     post = get_object_or_404(Nurse, auto_id=auto_id)
     if request.method == "POST":
@@ -83,8 +77,6 @@ def nurse_form_edit(request, auto_id):
 
 
 @login_required
-@nurse_required
-@doctor_required
 def nurse_detail(request, auto_id):
     nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
     return render(
@@ -93,8 +85,6 @@ def nurse_detail(request, auto_id):
 
 
 @login_required
-@nurse_required
-@doctor_required
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
     return render(

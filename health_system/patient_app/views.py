@@ -1,17 +1,12 @@
 # patient_app/views.py
 from django.contrib.auth.decorators import login_required
-from doctor_app.decorators import doctor_required
-from nurse_app.decorators import nurse_required
-from patient_app.decorators import patient_required
+from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import PatientLoginForm, PatientForm
 from rest_framework import viewsets
 from patient_app.serializers import PatientSerializer
 from patient_app.models import Patient
-
-# from django.contrib.auth.decorators import user_passes_test
-# from django.contrib.auth.models import Group
 
 
 def patient_login(request):
@@ -30,9 +25,7 @@ def patient_login(request):
 
 
 @login_required
-@doctor_required
-@nurse_required
-@patient_required
+@roles_required
 def PatientLists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -50,9 +43,7 @@ class PatientViewSet(viewsets.ModelViewSet):
 
 # The function Creates a user based on the information Entered
 @login_required
-@doctor_required
-@nurse_required
-@patient_required
+@roles_required
 def patient_form(request):
     if request.method == "POST":
         form = PatientForm(request.POST)
@@ -66,9 +57,7 @@ def patient_form(request):
 
 
 @login_required
-@doctor_required
-@nurse_required
-@patient_required
+@roles_required
 def patient_form_edit(request, auto_id):
     post = get_object_or_404(Patient, auto_id=auto_id)
     if request.method == "POST":
@@ -85,9 +74,7 @@ def patient_form_edit(request, auto_id):
 
 
 @login_required
-@doctor_required
-@nurse_required
-@patient_required
+@roles_required
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
     return render(
@@ -95,13 +82,3 @@ def patient_detail(request, auto_id):
         "patient_website/patient_detail.html",
         {"patient_detail": patient_detail},
     )
-
-
-# def is_patient(user):
-#     return user.groups.filter(name="Patients").exists()
-
-
-# @user_passes_test(is_patient)
-# def view_patient_records(request):
-#     # Your view logic for patients to view their records
-#     return render(request, "patient_records.html")

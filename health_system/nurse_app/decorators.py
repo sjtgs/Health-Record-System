@@ -1,17 +1,22 @@
-from django.http import HttpResponseForbidden
+from django.shortcuts import render
 from functools import wraps
+from django.contrib.auth.decorators import user_passes_test
 
 
-# Nurse Required Decorators. This function will only users of Nurse group to access the specific websites
-def nurse_required(view_func):
-    @wraps(view_func)
-    def wrapper(request, *args, **kwargs):
-        if (
-            request.user.is_authenticated
-            and request.user.groups.filter(name="Nurse").exists()
-        ):
-            return view_func(request, *args, **kwargs)
-        else:
-            return HttpResponseForbidden("You are not authorized to view this page.")
+def role_required(function=None):
+    def check_role(user):
+        return user.groups.filter(name__in=["Nurse", "Doctor"]).exists()
 
-    return wrapper
+    actual_decorator = user_passes_test(check_role)
+
+    if function:
+
+        @wraps(function)
+        def wrapper(request, *args, **kwargs):
+            if not check_role(request.user):
+                return render(request, "website/forbidden_page.html", status=403)
+            return function(request, *args, **kwargs)
+
+        return wrapper
+
+    return actual_decorator
