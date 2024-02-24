@@ -9,33 +9,26 @@ from nurse_app.models import Nurse
 from patient_app.models import Patient
 
 
+# This Function Displays the list of Entire Patient Record in the Database
 @login_required
 @role_required
-def nurse_dashboard(request):
-    nurse_dashboard = Nurse.objects.all()
+def patient_records(request):
+    patient_records = Patient.objects.all()
     return render(
         request,
-        "nurse_website/nurse_dashboard.html",
-        {"nurse_dashboard": nurse_dashboard},
+        "nurse_website/patient_records.html",
+        {"patient_records": patient_records},
     )
 
 
 # This Function Displays the list of Entire Nurse Record in the Database
 @login_required
 @role_required
-def NurseLists(request):
-    nurse_lists = Nurse.objects.all()
+def view_nurse_record(request):
+    current_nurse = request.user.nurse
+    nurse_record = Nurse.objects.filter(user=request.user)
     return render(
-        request, "nurse_website/nurse_lists.html", {"nurse_lists": nurse_lists}
-    )
-
-
-# This Function Display the list of Entire Patient Record in the Database
-@login_required
-def PatientLists(request):
-    patient_lists = Patient.objects.all()
-    return render(
-        request, "nurse_website/patient_lists.html", {"patient_lists": patient_lists}
+        request, "nurse_website/nurse_record.html", {"nurse_record": nurse_record}
     )
 
 

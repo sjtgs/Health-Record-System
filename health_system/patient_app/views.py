@@ -1,5 +1,6 @@
 # patient_app/views.py
 from django.contrib.auth.decorators import login_required
+
 from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
 from patient_app.forms import PatientForm
@@ -10,21 +11,17 @@ from patient_app.models import Patient
 
 @login_required
 @roles_required
-def patient_dashboard(request):
-    patient_dashboard = Patient.objects.all()
+def view_patient_records(request):
+    # Get the currently logged-in patient
+    current_patient = request.user.patient
+
+    # Fetch records for the current patient
+    patient_records = Patient.objects.filter(user=request.user)
+
     return render(
         request,
-        "patient_website/patient_dashboard.html",
-        {"patient_dashboard": patient_dashboard},
-    )
-
-
-@login_required
-@roles_required
-def PatientLists(request):
-    patient_lists = Patient.objects.all()
-    return render(
-        request, "patient_website/patient_list.html", {"patient_lists": patient_lists}
+        "patient_website/patient_records.html",
+        {"patient_records": patient_records},
     )
 
 

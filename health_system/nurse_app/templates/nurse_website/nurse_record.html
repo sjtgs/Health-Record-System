@@ -29,7 +29,7 @@
                     </thead>
 
                     <tbody>
-                        {% for nurse in view_nurse_record %}
+                        {% for nurse in nurse_record %}
                         <tr>
                             <td><a href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a></td>
                             <td>{{ nurse.last_name }}</td>

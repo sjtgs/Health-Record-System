@@ -13,22 +13,22 @@ from nurse_app.models import Nurse
 
 @login_required
 @doctor_role_required
+def view_doctor_record(request):
+    current_doctor = request.user.doctor
+    doctor_record = Doctor.objects.filter(user=request.user)
+    return render(
+        request, "doctor_template/doctor_record.html", {"doctor_record": doctor_record}
+    )
+
+
+@login_required
+@doctor_role_required
 def doctor_dashboard(request):
     doctor_dashboard = Doctor.objects.all()
     return render(
         request,
         "doctor_website/doctor_dashboard.html",
         {"doctor_dashboard": doctor_dashboard},
-    )
-
-
-# This Function Displays the list of Entire Doctor Record in the Database
-@login_required
-@doctor_role_required
-def DoctorLists(request):
-    doctor_lists = Doctor.objects.all()
-    return render(
-        request, "doctor_website/doctor_lists.html", {"doctor_lists": doctor_lists}
     )
 
 

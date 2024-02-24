@@ -24,6 +24,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", include("dashboard_app.urls")),
+    path("administrator/", include("administration_app.urls")),
     path("nurse/", include("nurse_app.urls")),
     path("doctor/", include("doctor_app.urls")),
     path("patient/", include("patient_app.urls")),

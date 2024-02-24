@@ -1,17 +1,18 @@
 {% extends 'website/base.html' %}
 {% block content %}
 
-
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">{{user.username}} - Dashboard</li>
         </ol>
+
+
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Nurses Record
+                Patient Record
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -22,23 +23,25 @@
                             <th scope="col">Date of Birth</th>
                             <th scope="col">Gender</th>
                             <th scope="col">NRC</th>
-                            <th scope="col">Medical Number</th>
-                            <th scope="col">Specialization</th>
+                            <th scope="col">Patient Type</th>
+                            <th scope="col">Diagnosis</th>
                             <th scope="col">Hospital</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {% for nurse in view_nurse_record %}
+                        {% for patient in patient_records %}
                         <tr>
-                            <td><a href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a></td>
-                            <td>{{ nurse.last_name }}</td>
-                            <td>{{ nurse.date_of_birth }}</td>
-                            <td>{{ nurse.gender }}</td>
-                            <td>{{ nurse.nrc }}</td>
-                            <td>{{ nurse.medical_number }}</td>
-                            <td>{{ nurse.specialization }}</td>
-                            <td>{{ nurse.hospitals }}</td>
+                            <td><a
+                                    href="{% url 'patient-detail' auto_id=patient.auto_id %}">{{ patient.first_name }}</a>
+                            </td>
+                            <td>{{ patient.last_name }}</td>
+                            <td>{{ patient.date_of_birth }}</td>
+                            <td>{{ patient.gender }}</td>
+                            <td>{{ patient.nrc }}</td>
+                            <td>{{ patient.patient_type }}</td>
+                            <td>{{ patient.diagnosis }}</td>
+                            <td>{{ patient.hospitals }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -47,5 +50,4 @@
         </div>
     </div>
 </main>
-
-{% endblock %}
+{% endblock%}

@@ -7,6 +7,7 @@ from doctor_app.views import (
     DoctorLists,
     NurseLists,
     doctor_dashboard,
+    view_doctor_record,
     doctor_form,
     doctor_form_edit,
     doctor_detail,
@@ -21,6 +22,7 @@ doctor_router.register(r"doctors", DoctorViewSet)
 urlpatterns = [
     path("doctors/", include(doctor_router.urls)),
     path("doctor-dashboard/", doctor_dashboard, name="doctor-dashboard"),
+    path("doctor-record/", view_doctor_record, name="doctor-record"),
     path("patient-lists/", PatientsLists, name="patient-lists"),
     path("doctor-lists/", DoctorLists, name="doctor-lists"),
     path("nurse-lists/", NurseLists, name="nurse-lists"),

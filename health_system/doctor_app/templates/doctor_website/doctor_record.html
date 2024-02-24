@@ -1,7 +1,5 @@
 {% extends 'website/base.html' %}
 {% block content %}
-
-
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
@@ -11,7 +9,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Nurses Record
+                Doctor Record
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -29,16 +27,17 @@
                     </thead>
 
                     <tbody>
-                        {% for nurse in view_nurse_record %}
+                        {% for doctor in doctor_record %}
                         <tr>
-                            <td><a href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a></td>
-                            <td>{{ nurse.last_name }}</td>
-                            <td>{{ nurse.date_of_birth }}</td>
-                            <td>{{ nurse.gender }}</td>
-                            <td>{{ nurse.nrc }}</td>
-                            <td>{{ nurse.medical_number }}</td>
-                            <td>{{ nurse.specialization }}</td>
-                            <td>{{ nurse.hospitals }}</td>
+                            <td><a href="{% url 'doctor-detail' auto_id=doctor.auto_id %}">{{doctor.first_name }}</a>
+                            </td>
+                            <td>{{ doctor.last_name }}</td>
+                            <td>{{ doctor.date_of_birth }}</td>
+                            <td>{{ doctor.gender }}</td>
+                            <td>{{ doctor.nrc }}</td>
+                            <td>{{ doctor.medical_number }}</td>
+                            <td>{{ doctor.specialization }}</td>
+                            <td>{{ doctor.hospitals }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -47,5 +46,4 @@
         </div>
     </div>
 </main>
-
 {% endblock %}

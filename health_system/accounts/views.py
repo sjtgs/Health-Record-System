@@ -12,7 +12,7 @@ def login_view(request):
             if user.groups.filter(name="Doctor").exists():
                 return redirect("doctor-dashboard")
             elif user.groups.filter(name="Nurse").exists():
-                return redirect("nurse-dashboard")
+                return redirect("nurse-record")
             elif user.groups.filter(name="Patient").exists():
                 return redirect("patient-dashboard")
         else:
