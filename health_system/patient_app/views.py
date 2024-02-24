@@ -2,26 +2,21 @@
 from django.contrib.auth.decorators import login_required
 from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
-from patient_app.forms import PatientLoginForm, PatientForm
+from patient_app.forms import PatientForm
 from rest_framework import viewsets
 from patient_app.serializers import PatientSerializer
 from patient_app.models import Patient
 
 
-def patient_login(request):
-    if request.method == "POST":
-        form = PatientLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("dashboard")
-        else:
-            form = PatientLoginForm()
-        return render(request, "patient_website/patient_login.html", {"form": form})
+@login_required
+@roles_required
+def patient_dashboard(request):
+    patient_dashboard = Patient.objects.all()
+    return render(
+        request,
+        "patient_website/patient_dashboard.html",
+        {"patient_dashboard": patient_dashboard},
+    )
 
 
 @login_required

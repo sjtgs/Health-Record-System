@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from patient_app.views import (
     PatientLists,
     PatientViewSet,
-    patient_login,
+    patient_dashboard,
     patient_form,
     patient_form_edit,
     patient_detail,
@@ -15,7 +15,7 @@ patient_router.register(r"patients", PatientViewSet)
 
 urlpatterns = [
     path("patients/", include(patient_router.urls)),
-    path("login/", patient_login, name="patient_login"),
+    path("patient-dashboard/", patient_dashboard, name="patient-dashboard"),
     path("patient-form/", patient_form, name="patient-form"),
     path("patient-lists/", PatientLists, name="patient-lists"),
     path(

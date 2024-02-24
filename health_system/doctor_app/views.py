@@ -1,9 +1,9 @@
 # doctor_app/views.py
-from django.contrib.auth import authenticate, login
+
 from django.contrib.auth.decorators import login_required
 from doctor_app.decorators import doctor_role_required
 from django.shortcuts import render, redirect, get_object_or_404
-from doctor_app.forms import DoctorLoginForm, DoctorForm
+from doctor_app.forms import DoctorForm
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
@@ -11,19 +11,15 @@ from patient_app.models import Patient
 from nurse_app.models import Nurse
 
 
-def doctor_login(request):
-    if request.method == "POST":
-        form = DoctorLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("dashboard")
-        else:
-            form = DoctorLoginForm()
-        return render(request, "doctor_website/doctor_login.html", {"form": form})
+@login_required
+@doctor_role_required
+def doctor_dashboard(request):
+    doctor_dashboard = Doctor.objects.all()
+    return render(
+        request,
+        "doctor_website/doctor_dashboard.html",
+        {"doctor_dashboard": doctor_dashboard},
+    )
 
 
 # This Function Displays the list of Entire Doctor Record in the Database

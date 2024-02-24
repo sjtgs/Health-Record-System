@@ -1,28 +1,23 @@
 # nurse_app/views.py
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
 from nurse_app.decorators import role_required
-from nurse_app.forms import NurseLoginForm, NurseForm
+from nurse_app.forms import NurseForm
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
 from nurse_app.models import Nurse
 from patient_app.models import Patient
 
 
-def nurse_login(request):
-    if request.method == "POST":
-        form = NurseLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("dashboard")
-        else:
-            form = NurseLoginForm()
-        return render(request, "nurse_website/nurse_login.html", {"form": form})
+@login_required
+@role_required
+def nurse_dashboard(request):
+    nurse_dashboard = Nurse.objects.all()
+    return render(
+        request,
+        "nurse_website/nurse_dashboard.html",
+        {"nurse_dashboard": nurse_dashboard},
+    )
 
 
 # This Function Displays the list of Entire Nurse Record in the Database
