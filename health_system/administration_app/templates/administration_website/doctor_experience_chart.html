@@ -1,0 +1,39 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<canvas id="doctorExperienceChart" style="width: 75%;"></canvas>
+<script src="{% static 'js/PieChart.min.js'%}"></script>
+<script>
+    var ctx = document.getElementById('doctorExperienceChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ labels| safe }},
+    datasets: [{
+        label: 'Doctor Experience Distribution',
+        data: {{ data| safe }},
+        fill: true,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+            }]
+        },
+    options: {
+        responsive: false,
+            maintainAspectRatio: false,
+                scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                    text: 'Doctor Experience Distribution'
+            }
+        }
+    }
+    });
+</script>
+{% endblock %}

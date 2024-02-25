@@ -5,7 +5,8 @@ from administration_app.views import (
     doctor_lists,
     nurse_lists,
     patient_lists,
-    # view_pie_chart,
+    doctor_specialization_chart,
+    doctor_experience_chart,
 )
 
 
@@ -14,5 +15,10 @@ urlpatterns = [
     path("doctor-lists/", doctor_lists, name="doctor-lists"),
     path("nurse-lists/", nurse_lists, name="nurse-lists"),
     path("patient-lists/", patient_lists, name="patient-lists"),
-    # path("pie-chart/", view_pie_chart, name="pie-chart"),
+    path(
+        "specialization-chart/",
+        doctor_specialization_chart,
+        name="specialization-chart",
+    ),
+    path("doctor-experience/", doctor_experience_chart, name="doctor-experience"),
 ]

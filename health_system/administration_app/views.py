@@ -7,36 +7,86 @@ from django.shortcuts import render
 from doctor_app.models import Doctor
 from nurse_app.models import Nurse
 from patient_app.models import Patient
+from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-# Adding of Pie Chart
-# @login_required
-# @admin_role_required
-# def view_pie_chart(request):
-#     labels = []
-#     data = []
 
-#     queryset = Doctor.objects.order_by("years_of_experience")
+@login_required
+@admin_role_required
+def doctor_experience_chart(request):
+    # Query the Doctor model to get the count of doctors for each years of experience
+    experience_counts = Doctor.objects.values("years_of_experience").annotate(
+        count=Count("auto_id")
+    )
 
-#     for doc in queryset:
-#         labels.append(doc.specialization)
-#         data.append(doc.years_of_experience)
+    # Prepare the data for the Pie chart
+    labels = [item["years_of_experience"] for item in experience_counts]
+    data = [item["count"] for item in experience_counts]
 
-#     return render(
-#         request,
-#         "administration_website/pie_dashboard.html",
-#         {
-#             "labels": labels,
-#             "data": data,
-#         },
-#     )
+    return render(
+        request,
+        "administration_website/doctor_experience_chart.html",
+        {"labels": labels, "data": data},
+    )
+
+
+@login_required
+@admin_role_required
+def doctor_specialization_chart(request):
+    # Query the Doctor model to get the count of doctors for specialization
+    specialization_counts = Doctor.objects.values("specialization").annotate(
+        count=Count("auto_id")
+    )
+    # Prepare the data for the Bar chart
+    labels = [item["specialization"] for item in specialization_counts]
+    data = [item["count"] for item in specialization_counts]
+    return render(
+        request,
+        "administration_website/doctor_specialization_chart.html",
+        {"labels": labels, "data": data},
+    )
 
 
 @login_required
 @admin_role_required
 def view_all_records(request):
     doctors_records = Doctor.objects.all()
-    nurses_records = Nurse.objects.all()
-    patients_records = Patient.objects.all()
+    nurse_record = Nurse.objects.all()
+    patient_record = Patient.objects.all()
+    # Query the Doctor model to get the count of doctors for specialization
+    specialization_counts = Doctor.objects.values("specialization").annotate(
+        count=Count("auto_id")
+    )
+    # Prepare the data for the Pie chart
+    labels = [item["specialization"] for item in specialization_counts]
+    data = [item["count"] for item in specialization_counts]
+    # Query the Doctor model to get the count of doctors for specialization
+    specializations_counts = Doctor.objects.values("specialization").annotate(
+        count=Count("auto_id")
+    )
+
+    # Prepare the data for the bar chart
+    label = [item["specialization"] for item in specializations_counts]
+    datas = [item["count"] for item in specializations_counts]
+
+    page = request.GET.get("page", 1)
+    paginator = Paginator(nurse_record, 2)
+    patient_paginatior = Paginator(patient_record, 2)
+    patient_page = request.GET.get("patient_page", 1)
+
+    try:
+        nurses_records = paginator.page(page)
+    except PageNotAnInteger:
+        nurses_records = paginator.page(1)
+    except EmptyPage:
+        nurses_records = paginator.page(paginator.num_pages)
+
+    try:
+        patients_records = patient_paginatior.page(patient_page)
+    except PageNotAnInteger:
+        patients_records = patient_paginatior.page(1)
+    except EmptyPage:
+        patients_records = patient_paginatior.page(patient_paginatior.num_pages)
 
     return render(
         request,
@@ -45,6 +95,10 @@ def view_all_records(request):
             "doctors_records": doctors_records,
             "nurses_records": nurses_records,
             "patients_records": patients_records,
+            "labels": labels,
+            "data": data,
+            "label": label,
+            "datas": datas,
         },
     )
 
