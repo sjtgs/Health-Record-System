@@ -8,6 +8,7 @@ class NurseForm(forms.ModelForm):
         fields = "__all__"
         exclude = (
             "user",
+            "group",
             "auto_id",
             "created_by",
             "updated_at",

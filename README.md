@@ -4,13 +4,15 @@
 The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project. 
 
 
-![alt text](<health_system/images/Health Record SyStem - Login.png>)
+![alt text](<health_system/images/Health Record SyStem Dashboard - Login.png>)
 <br>
-![alt text](<health_system/images/Health Record SyStem Dashboard - HRS.png>)
+![alt text](<health_system/images/Health Record SyStem Dashboard - Administrator.png>)
 <br>
-![alt text](<health_system/images/Health Record SyStem - User Form.png>)
 <br>
 ![alt text](<health_system/images/Unauthorized Health Record SyStem Dashboard.png>)
+<br>
+![alt text](<health_system/images/Health Record SyStem Dashboard - Doctor Form.png>)
+
 
 ## Text Based - Flow Chart 
 ```
@@ -98,9 +100,10 @@ $ source healthvenv/bin/activate
 
 ## Health Record System Application :
 
-### Dashboard  App 
 
+### Administration App 
 The Dashboard application serves as a centralized platform for healthcare administration, providing comprehensive insights into patient records, appointments, and review schedules. Built on Django, it offers administrators a user-friendly interface to monitor and manage various aspects of patient care, facilitating informed decision-making and streamlined operations. From patient records to appointment scheduling and review dates, the Dashboard ensures efficient management of healthcare services, optimizing overall performance and enhancing patient outcomes.
+
 
 
 ### Doctor App 
@@ -117,7 +120,7 @@ The Nurse App, built on Django, streamlines the management of nurse profiles, en
 
 The Patient App is a Django application designed to manage patient information within a healthcare system. It includes models, views, and templates to facilitate the creation, retrieval, updating, and deletion of patient records. The app allows healthcare providers to store detailed information about patients, such as personal details, medical history, diagnoses, treatments, insurance information, and contact details. Additionally, it supports user authentication and authorization, ensuring that only authorized users can access and modify patient records. The Patient App aims to streamline the management of patient data, enhance communication between healthcare professionals, and improve the overall efficiency of healthcare services.
 
-### Administration App 
+
 
 
 ##  Health Record SyStem - URLS

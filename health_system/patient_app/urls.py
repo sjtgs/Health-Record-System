@@ -2,7 +2,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from patient_app.views import (
-    PatientLists,
     PatientViewSet,
     view_patient_records,
     patient_form,
@@ -17,7 +16,6 @@ urlpatterns = [
     path("patients/", include(patient_router.urls)),
     path("patient-records/", view_patient_records, name="patient-dashboard"),
     path("patient-form/", patient_form, name="patient-form"),
-    path("patient-lists/", PatientLists, name="patient-lists"),
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
     ),
