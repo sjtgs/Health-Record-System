@@ -8,11 +8,11 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 <br>
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Administrator.png>)
 <br>
-<br>
-![alt text](<health_system/images/Unauthorized Health Record SyStem Dashboard.png>)
+![alt text](<health_system/images/Health Record SyStem Dashboard - Visual.png>)
 <br>
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Doctor Form.png>)
-
+<br>
+![alt text](<health_system/images/Unauthorized Health Record SyStem Dashboard.png>)
 
 ## Text Based - Flow Chart 
 ```
