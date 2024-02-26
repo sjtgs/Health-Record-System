@@ -14,8 +14,10 @@ from administration_app.views import (
     admin_doctor_detail,
     nurse_form,
     nurse_form_edit,
+    admin_nurse_detail,
     patient_form,
     patient_form_edit,
+    admin_patient_detail,
 )
 
 
@@ -41,8 +43,10 @@ urlpatterns = [
     path("doctor-detail/<int:auto_id>/", admin_doctor_detail, name="doctor-detail"),
     path("nurse-form/", nurse_form, name="nurse-form"),
     path("<int:auto_id>/nurse-form-edit/", nurse_form_edit, name="nurse-form-edit"),
+    path("nurse-detail/<int:auto_id>/", admin_nurse_detail, name="nurse-detail"),
     path("patient-form/", patient_form, name="patient-form"),
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
     ),
+    path("patient-detail/<int:auto_id>/", admin_patient_detail, name="patient-detail"),
 ]
