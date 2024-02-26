@@ -6,8 +6,6 @@ from nurse_app.views import (
     view_nurse_record,
     patient_records,
     # nurse_dashboard,
-    nurse_form,
-    nurse_form_edit,
     nurse_detail,
     patient_detail,
 )
@@ -21,8 +19,6 @@ urlpatterns = [
     # path("nurse-dashboard/", view_nurse_record, name="nurse-dashboard"),
     path("nurse-record/", view_nurse_record, name="nurse-record"),
     path("patient-records/", patient_records, name="patient-records"),
-    path("nurse-form/", nurse_form, name="nurse-form"),
-    path("<int:auto_id>/nurse-form-edit/", nurse_form_edit, name="nurse-form-edit"),
     path("nurse-detail/<int:auto_id>/", nurse_detail, name="nurse-detail"),
     path("patient-detail/<int:auto_id>/", patient_detail, name="patient-detail"),
 ]

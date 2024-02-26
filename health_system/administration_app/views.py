@@ -3,10 +3,16 @@ from administration_app.decorators import admin_role_required
 from doctor_app.decorators import doctor_role_required
 from nurse_app.decorators import role_required
 from patient_app.decorators import roles_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from doctor_app.models import Doctor
 from nurse_app.models import Nurse
 from patient_app.models import Patient
+from administration_app.forms import (
+    AdministratorForm,
+    DoctorForm,
+    NurseForm,
+    PatientForm,
+)
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -60,7 +66,7 @@ def view_all_records(request):
     # Prepare the data for the Pie chart
     labels = [item["specialization"] for item in specialization_counts]
     data = [item["count"] for item in specialization_counts]
-    # Query the Doctor model to get the count of doctors for specialization
+    # Query the Doctor model to get the count of doctors for specializationHe
     specializations_counts = Doctor.objects.values("specialization").annotate(
         count=Count("auto_id")
     )
@@ -103,7 +109,7 @@ def view_all_records(request):
     )
 
 
-# This Function Displays the list of Entire Doctor Lists in the Database
+# This Function Displays the list of Entire Doctors Lists in the Database
 @login_required
 @doctor_role_required
 def doctor_lists(request):
@@ -115,7 +121,7 @@ def doctor_lists(request):
     )
 
 
-# This Function Displays the list of Entire Nurse Lists in the Database
+# This Function Displays the list of Entire Nurses Lists in the Database
 @login_required
 @role_required
 def nurse_lists(request):
@@ -127,6 +133,7 @@ def nurse_lists(request):
     )
 
 
+# This Function Displays the list of Entire Patients Lists in the Database
 @login_required
 @roles_required
 def patient_lists(request):
@@ -136,3 +143,100 @@ def patient_lists(request):
         "administration_website/patient_list.html",
         {"patient_lists": patient_lists},
     )
+
+
+# The function Creates a Doctor User based on the information Entered.
+@login_required
+@doctor_role_required
+def doctor_form(request):
+    if request.method == "POST":
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("doctor-detail")
+    else:
+        form = DoctorForm()
+    return render(request, "doctor_website/doctor_form.html", {"form": form})
+
+
+# The function Edits a Doctors Information.
+@login_required
+@doctor_role_required
+def doctor_form_edit(request, auto_id):
+    post = get_object_or_404(Doctor, auto_id=auto_id)
+    if request.method == "POST":
+        form = DoctorForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "doctor-detail",
+            )
+    else:
+        form = DoctorForm(instance=post)
+    return render(request, "doctor_website/doctor_form.html", {"form": form})
+
+
+# The function Creates a Nurse User based on the information Entered
+@login_required
+def nurse_form(request):
+    if request.method == "POST":
+        form = NurseForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("nurse-lists")
+    else:
+        form = NurseForm()
+    return render(request, "nurse_website/nurse_form.html", {"form": form})
+
+
+# The function Edits a Nurses Information.
+@login_required
+def nurse_form_edit(request, auto_id):
+    post = get_object_or_404(Nurse, auto_id=auto_id)
+    if request.method == "POST":
+        form = NurseForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "nurse-lists",
+            )
+    else:
+        form = NurseForm(instance=post)
+    return render(request, "nurse_website/nurse_form.html", {"form": form})
+
+
+# The function Creates a Nurse User based on the information Entered
+@login_required
+@roles_required
+def patient_form(request):
+    if request.method == "POST":
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("patient-lists")
+    else:
+        form = PatientForm()
+    return render(request, "patient_website/patient_form.html", {"form": form})
+
+
+# The function Edits a Nurses Information.
+@login_required
+@roles_required
+def patient_form_edit(request, auto_id):
+    post = get_object_or_404(Patient, auto_id=auto_id)
+    if request.method == "POST":
+        form = PatientForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "patient-lists",
+            )
+    else:
+        form = PatientForm(instance=post)
+    return render(request, "patient_website/patient_form.html", {"form": form})

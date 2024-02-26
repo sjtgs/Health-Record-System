@@ -52,7 +52,12 @@ class Doctor(models.Model):
             password = username
 
             # Create a New Doctor User
-            self.user = User.objects.create_user(username=username, password=password)
+            self.user = User.objects.create_user(
+                username=username,
+                first_name=self.first_name,
+                last_name=self.last_name,
+                password=password,
+            )
 
         if not self.group:
             # Get or create Doctor group

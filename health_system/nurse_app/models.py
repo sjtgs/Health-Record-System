@@ -36,7 +36,7 @@ class Nurse(models.Model):
     years_of_experience = models.PositiveIntegerField()
 
     # Contact Information
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
     phone_number = models.CharField(max_length=15)
 
     # Timestamps
@@ -50,10 +50,16 @@ class Nurse(models.Model):
         # Check if the username for the Nurse exist, if it doesn't create a new one.The username and the password same
         if not self.user:
             username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
+
             password = username
 
             # Create a New Nurse User
-            self.user = User.objects.create_user(username=username, password=password)
+            self.user = User.objects.create_user(
+                username=username,
+                first_name=self.first_name,
+                last_name=self.last_name,
+                password=password,
+            )
 
         if not self.group:
             # Get or create Nurse group

@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from nurse_app.decorators import role_required
-from nurse_app.forms import NurseForm
+
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
 from nurse_app.models import Nurse
@@ -30,36 +30,6 @@ def view_nurse_record(request):
     return render(
         request, "nurse_website/nurse_record.html", {"nurse_record": nurse_record}
     )
-
-
-# The function Creates a user based on the information Entered
-@login_required
-def nurse_form(request):
-    if request.method == "POST":
-        form = NurseForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect("nurse-lists")
-    else:
-        form = NurseForm()
-    return render(request, "nurse_website/nurse_form.html", {"form": form})
-
-
-@login_required
-def nurse_form_edit(request, auto_id):
-    post = get_object_or_404(Nurse, auto_id=auto_id)
-    if request.method == "POST":
-        form = NurseForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect(
-                "nurse-lists",
-            )
-    else:
-        form = NurseForm(instance=post)
-    return render(request, "nurse_website/nurse_form.html", {"form": form})
 
 
 @login_required

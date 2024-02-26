@@ -47,7 +47,7 @@ class Patient(models.Model):
     patient_type = models.CharField(max_length=3, choices=PATIENT_TYPE_CHOICES)
 
     # Address Information
-    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
+    # countries = models.ForeignKey(Country, on_delete=models.CASCADE)
     provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
     towns = models.ForeignKey(Town, on_delete=models.CASCADE)
     address = models.TextField()
@@ -80,7 +80,12 @@ class Patient(models.Model):
             password = username
 
             # Create a New Patient User
-            self.user = User.objects.create_user(username=username, password=password)
+            self.user = User.objects.create_user(
+                username=username,
+                first_name=self.first_name,
+                last_name=self.last_name,
+                password=password,
+            )
 
         if not self.group:
             # Get or create Patient group
