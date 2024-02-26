@@ -4,6 +4,7 @@ from doctor_app.decorators import doctor_role_required
 from nurse_app.decorators import role_required
 from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
+from administration_app.models import Administrator
 from doctor_app.models import Doctor
 from nurse_app.models import Nurse
 from patient_app.models import Patient
@@ -145,7 +146,44 @@ def patient_lists(request):
     )
 
 
-# The function Creates a Doctor User based on the information Entered.
+# The Function Creates a Administrator User based on the information Entered.
+@login_required
+@admin_role_required
+def administrator_form(request):
+    if request.method == "POST":
+        form = AdministratorForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("administrator-detail")
+    else:
+        form = AdministratorForm()
+    return render(
+        request, "administration_website/administration_form.html", {"form": form}
+    )
+
+
+# The Function Edits a Administration Information.
+@login_required
+@admin_role_required
+def administrator_form_edit(request, auto_id):
+    post = get_object_or_404(Administrator, auto_id=auto_id)
+    if request.method == "POST":
+        form = AdministratorForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect(
+                "administrator-detail",
+            )
+    else:
+        form = DoctorForm(instance=post)
+    return render(
+        request, "administration_website/administration_form.html", {"form": form}
+    )
+
+
+# The Function Creates a Doctor User based on the information Entered.
 @login_required
 @doctor_role_required
 def doctor_form(request):
@@ -160,7 +198,7 @@ def doctor_form(request):
     return render(request, "doctor_website/doctor_form.html", {"form": form})
 
 
-# The function Edits a Doctors Information.
+# The Function Edits a Doctors Information.
 @login_required
 @doctor_role_required
 def doctor_form_edit(request, auto_id):
@@ -178,7 +216,19 @@ def doctor_form_edit(request, auto_id):
     return render(request, "doctor_website/doctor_form.html", {"form": form})
 
 
-# The function Creates a Nurse User based on the information Entered
+# The Function shows Doctor Detail.
+@login_required
+@admin_role_required
+def admin_doctor_detail(request, auto_id):
+    doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
+    return render(
+        request,
+        "administration_website/doctor_detail.html",
+        {"doctor_detail": doctor_detail},
+    )
+
+
+# The Function Creates a Nurse User based on the information Entered
 @login_required
 def nurse_form(request):
     if request.method == "POST":
@@ -192,7 +242,7 @@ def nurse_form(request):
     return render(request, "nurse_website/nurse_form.html", {"form": form})
 
 
-# The function Edits a Nurses Information.
+# The Function Edits a Nurses Information.
 @login_required
 def nurse_form_edit(request, auto_id):
     post = get_object_or_404(Nurse, auto_id=auto_id)
@@ -209,7 +259,19 @@ def nurse_form_edit(request, auto_id):
     return render(request, "nurse_website/nurse_form.html", {"form": form})
 
 
-# The function Creates a Nurse User based on the information Entered
+# The Function shows Nurse Detail.
+@login_required
+@admin_role_required
+def admin_nurse_detail(request, auto_id):
+    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    return render(
+        request,
+        "administration_website/nurse_detail.html",
+        {"nurse_detail": nurse_detail},
+    )
+
+
+# The Function Creates a Nurse User based on the information Entered
 @login_required
 @roles_required
 def patient_form(request):
@@ -224,7 +286,7 @@ def patient_form(request):
     return render(request, "patient_website/patient_form.html", {"form": form})
 
 
-# The function Edits a Nurses Information.
+# The Function Edits a Nurses Information.
 @login_required
 @roles_required
 def patient_form_edit(request, auto_id):
@@ -240,3 +302,14 @@ def patient_form_edit(request, auto_id):
     else:
         form = PatientForm(instance=post)
     return render(request, "patient_website/patient_form.html", {"form": form})
+
+
+@login_required
+@admin_role_required
+def admin_patient_detail(request, auto_id):
+    patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    return render(
+        request,
+        "administration_website/patient_detail.html",
+        {"patient_detail": patient_detail},
+    )
