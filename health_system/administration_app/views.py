@@ -57,6 +57,24 @@ def doctor_specialization_chart(request):
 
 @login_required
 @admin_role_required
+def doctor_gender_distribution(request):
+    male_count = Doctor.objects.filter(gender="M").count()
+    female_count = Doctor.objects.filter(gender="F").count()
+    labels = ["Male", "Female"]
+    data = [male_count, female_count]
+
+    return render(
+        request,
+        "administration_website/doctor_gender_pie_chart.html",
+        {
+            "labels": labels,
+            "data": data,
+        },
+    )
+
+
+@login_required
+@admin_role_required
 def view_all_records(request):
     doctors_records = Doctor.objects.all()
     nurse_record = Nurse.objects.all()

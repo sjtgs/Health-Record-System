@@ -1,0 +1,32 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div>
+
+    <h4 style="margin-left: 40%;">
+        Gender Distribution
+    </h4>
+    <canvas id="genderChart" style="width: 45%;"></canvas>
+</div>
+<script src="{% static 'js/PieChart.min.js'%}"></script>
+<script>
+    var ctx = document.getElementById('genderChart').getContext('2d');
+    var genderChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: {{ labels| safe }},
+    datasets: [{
+        label: 'Gender Distribution',
+        data: {{ data| safe }},
+        backgroundColor: ['blue', 'pink']
+            }]
+        },
+    options: {
+        responsive: true,
+            maintainAspectRatio: true,
+    }
+    });
+</script>
+{% endblock %}
