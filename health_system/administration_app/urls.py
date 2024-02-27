@@ -9,6 +9,7 @@ from administration_app.views import (
     doctor_experience_chart,
     administrator_form,
     administrator_form_edit,
+    admin_administrator_detail,
     doctor_form,
     doctor_form_edit,
     admin_doctor_detail,
@@ -38,15 +39,32 @@ urlpatterns = [
         administrator_form_edit,
         name="administrator-form-edit",
     ),
+    path(
+        "administrator-detail/<int:auto_id>/",
+        admin_administrator_detail,
+        name="administrator-detail",
+    ),
     path("doctor-form/", doctor_form, name="doctor-form"),
     path("<int:auto_id>/doctor-form-edit/", doctor_form_edit, name="doctor-form-edit"),
-    path("doctor-detail/<int:auto_id>/", admin_doctor_detail, name="doctor-detail"),
+    path(
+        "admin-doctor-detail/<int:auto_id>/",
+        admin_doctor_detail,
+        name="admin-doctor-detail",
+    ),
     path("nurse-form/", nurse_form, name="nurse-form"),
     path("<int:auto_id>/nurse-form-edit/", nurse_form_edit, name="nurse-form-edit"),
-    path("nurse-detail/<int:auto_id>/", admin_nurse_detail, name="nurse-detail"),
+    path(
+        "admin-nurse-detail/<int:auto_id>/",
+        admin_nurse_detail,
+        name="admin-nurse-detail",
+    ),
     path("patient-form/", patient_form, name="patient-form"),
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
     ),
-    path("patient-detail/<int:auto_id>/", admin_patient_detail, name="patient-detail"),
+    path(
+        "admin-patient-detail/<int:auto_id>/",
+        admin_patient_detail,
+        name="admin-patient-detail",
+    ),
 ]

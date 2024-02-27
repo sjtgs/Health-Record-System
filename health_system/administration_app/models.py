@@ -31,8 +31,8 @@ class Town(models.Model):
 
 # Hospital Administration Information
 class Administrator(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
 
     GENDER_CHOICES = [
         ("M", "Male"),
@@ -71,7 +71,10 @@ class Administrator(models.Model):
             password = username
 
             #  Create a Administrator username
-            self.user = User.objects.create_user(username=username, password=password)
+            self.user = User.objects.create_user(
+                username=username,
+                password=password,
+            )
 
         if not self.group:
             # Get or create Administrator group

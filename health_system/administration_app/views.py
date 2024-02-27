@@ -155,7 +155,7 @@ def administrator_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("administrator-detail")
+            return redirect("administrator-detail", auto_id=post.auto_id)
     else:
         form = AdministratorForm()
     return render(
@@ -173,13 +173,23 @@ def administrator_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect(
-                "administrator-detail",
-            )
+            return redirect("administrator-detail", auto_id=post.auto_id)
     else:
         form = DoctorForm(instance=post)
     return render(
         request, "administration_website/administration_form.html", {"form": form}
+    )
+
+
+# The Function a Administration Detail.
+@login_required
+@admin_role_required
+def admin_administrator_detail(request, auto_id):
+    administrator_detail = get_object_or_404(Administrator, auto_id=auto_id)
+    return render(
+        request,
+        "administration_website/administration_detail.html",
+        {"administrator_detail": administrator_detail},
     )
 
 
@@ -192,10 +202,10 @@ def doctor_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("doctor-detail")
+            return redirect("admin-doctor-detail", auto_id=post.auto_id)
     else:
         form = DoctorForm()
-    return render(request, "doctor_website/doctor_form.html", {"form": form})
+    return render(request, "administration_website/doctor_form.html", {"form": form})
 
 
 # The Function Edits a Doctors Information.
@@ -208,12 +218,10 @@ def doctor_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect(
-                "doctor-detail",
-            )
+            return redirect("admin-doctor-detail", auto_id=auto_id)
     else:
         form = DoctorForm(instance=post)
-    return render(request, "doctor_website/doctor_form.html", {"form": form})
+    return render(request, "administration_website/doctor_form.html", {"form": form})
 
 
 # The Function shows Doctor Detail.
@@ -236,10 +244,10 @@ def nurse_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("nurse-lists")
+            return redirect("nurse-lists", auto_id=post.auto_id)
     else:
         form = NurseForm()
-    return render(request, "nurse_website/nurse_form.html", {"form": form})
+    return render(request, "administration_website/nurse_form.html", {"form": form})
 
 
 # The Function Edits a Nurses Information.
@@ -251,12 +259,10 @@ def nurse_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect(
-                "nurse-lists",
-            )
+            return redirect("nurse-lists", auto_id=post.auto_id)
     else:
         form = NurseForm(instance=post)
-    return render(request, "nurse_website/nurse_form.html", {"form": form})
+    return render(request, "administration_website/nurse_form.html", {"form": form})
 
 
 # The Function shows Nurse Detail.
@@ -280,10 +286,10 @@ def patient_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("patient-lists")
+            return redirect("patient-lists", auto_id=post.auto_id)
     else:
         form = PatientForm()
-    return render(request, "patient_website/patient_form.html", {"form": form})
+    return render(request, "administration_website/patient_form.html", {"form": form})
 
 
 # The Function Edits a Nurses Information.
@@ -296,12 +302,10 @@ def patient_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect(
-                "patient-lists",
-            )
+            return redirect("patient-lists", auto_id=post.auto_id)
     else:
         form = PatientForm(instance=post)
-    return render(request, "patient_website/patient_form.html", {"form": form})
+    return render(request, "administration_website/patient_form.html", {"form": form})
 
 
 @login_required

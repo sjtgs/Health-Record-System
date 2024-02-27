@@ -8,10 +8,10 @@
             <div class="col-lg-7">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header">
-                        <h3 class="text-center font-weight-light my-4">Administration Form</h3>
+                        <h3 class="text-center font-weight-light my-4">Patient Form</h3>
                     </div>
                     <div class="card-body">
-                        <form id="successPost" method="post">
+                        <form id="successPosts" method="post">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group col-md-12 mb-0">
@@ -26,12 +26,11 @@
                         </form>
                     </div>
                     <div class="card-footer text-center py-3">
-                        <div class="small">Administration Form</div>
+                        <div class="small">Patient Form</div>
                     </div>
-
                     <!-- Tool Tip -->
                     <div id="tooltip" class="tooltip" style="display: none;">
-                        Successfully Created Administrator
+                        Successfully Created Patient User
                     </div>
 
                     <!-- End of Tool Tip -->
