@@ -77,8 +77,8 @@ def view_all_records(request):
     datas = [item["count"] for item in specializations_counts]
 
     page = request.GET.get("page", 1)
-    paginator = Paginator(nurse_record, 2)
-    patient_paginatior = Paginator(patient_record, 2)
+    paginator = Paginator(nurse_record, 10)
+    patient_paginatior = Paginator(patient_record, 10)
     patient_page = request.GET.get("patient_page", 1)
 
     try:

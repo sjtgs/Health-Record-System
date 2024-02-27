@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 
+# Based on The User login Credentials view the right Dashboard
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -9,7 +10,9 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if user.groups.filter(name="Doctor").exists():
+            if user.groups.filter(name="Administrator").exists():
+                return redirect("admin-dashboard")
+            elif user.groups.filter(name="Doctor").exists():
                 return redirect("doctor-dashboard")
             elif user.groups.filter(name="Nurse").exists():
                 return redirect("nurse-record")
@@ -26,9 +29,7 @@ def login_view(request):
         return render(request, "accounts_template/login.html")
 
 
+# Logout View Function
 def logout_view(request):
     logout(request)
     return redirect("index")
-
-
-# Create your views here.
