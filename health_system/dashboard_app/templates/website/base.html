@@ -63,16 +63,16 @@
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
-                            Layouts
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Charts
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
 
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                <a class="nav-link" href="{% url 'specialization-chart' %}">Specialization Chart</a>
+                                <a class="nav-link" href="{% url 'doctor-experience' %}">Doctor Experience</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
@@ -128,6 +128,7 @@
                         <div class="collapse" id="formsLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{% url 'administration-form' %}">Administration Form</a>
                                 <a class="nav-link" href="{% url 'doctor-form' %}">Doctor Form</a>
                                 <a class="nav-link" href="{% url 'nurse-form' %}">Nurse Form</a>
                                 <a class="nav-link" href="{% url 'patient-form' %}">Patient Form</a>
