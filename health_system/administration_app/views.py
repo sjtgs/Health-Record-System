@@ -55,6 +55,7 @@ def doctor_specialization_chart(request):
     )
 
 
+# This Function Shows Doctor Gender Distribution and displays it as a Pie Chart
 @login_required
 @admin_role_required
 def doctor_gender_distribution(request):
@@ -70,6 +71,39 @@ def doctor_gender_distribution(request):
             "labels": labels,
             "data": data,
         },
+    )
+
+
+# This Function Shows Nurse Gender Distribution and displays it as a Pie Chart
+@login_required
+@admin_role_required
+def nurse_gender_distribution(request):
+    male_nurse_count = Nurse.objects.filter(gender="M").count()
+    female_nurse_count = Nurse.objects.filter(gender="F").count()
+    labels = ["Male", "Female"]
+    data = [male_nurse_count, female_nurse_count]
+
+    return render(
+        request,
+        "administration_website/nurse_gender_distribution.html",
+        {"labels": labels, "data": data},
+    )
+
+
+# This Function Shows Patient Gender Distribution and displays it as a Pie Chart
+@login_required
+@admin_role_required
+def patient_gender_distribution(request):
+    male_patient_count = Patient.objects.filter(gender="M").count()
+    female_patient_count = Patient.objects.filter(gender="F").count()
+
+    labels = ["Male", "Female"]
+    data = [male_patient_count, female_patient_count]
+
+    return render(
+        request,
+        "administration_website/patient_gender_distribution.html",
+        {"labels": labels, "data": data},
     )
 
 
@@ -335,36 +369,4 @@ def admin_patient_detail(request, auto_id):
         request,
         "administration_website/patient_detail.html",
         {"patient_detail": patient_detail},
-    )
-
-
-@login_required
-@admin_role_required
-def gender_nurse_distribution(request):
-    male_nurse_count = Nurse.objects.filter(gender="M").count()
-    female_nurse_count = Nurse.objects.filter(gender="F").count()
-
-    labels = ["Male", "Female"]
-    data = [male_nurse_count, female_nurse_count]
-
-    return render(
-        request,
-        "administration_website/gender_nurse_distribution.html",
-        {"labels": labels, "data": data},
-    )
-
-
-@login_required
-@admin_role_required
-def gender_patient_distribution(request):
-    male_patient_count = Patient.objects.filter(gender="M").count()
-    female_patient_count = Patient.objects.filter(gender="F").count()
-
-    labels = ["Male", "Female"]
-    data = [male_patient_count, female_patient_count]
-
-    return render(
-        request,
-        "administration_website/gender_patient_distribution.html",
-        {"labels": labels, "data": data},
     )
