@@ -1,31 +1,5 @@
 from django.db import models
-
-
-# Created Country Model
-class Country(models.Model):
-    countries = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.countries}"
-
-
-# Created Province Model
-class Province(models.Model):
-    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
-    provinces = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.provinces}"
-
-
-# Created Town models
-class Town(models.Model):
-    countries = models.ForeignKey(Country, on_delete=models.CASCADE)
-    provinces = models.ForeignKey(Province, on_delete=models.CASCADE)
-    towns = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.towns}"
+from administration_app.models import Country, Province, Town
 
 
 class InsuranceCompany(models.Model):

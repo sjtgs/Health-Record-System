@@ -1,0 +1,43 @@
+{% extends 'website/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Administration Form</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="successPost" method="post">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-12 mb-0">
+                                    {{ form|crispy }}
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3">
+                        <div class="small">Administration Form</div>
+                    </div>
+
+                    <!-- Tool Tip -->
+                    <div id="tooltip" class="tooltip" style="display: none;">
+                        Successfully Created Administrator
+                    </div>
+
+                    <!-- End of Tool Tip -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

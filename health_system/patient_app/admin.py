@@ -4,7 +4,7 @@ import csv
 
 # from reportlab.pdfgen import canvas
 # from django.utils.timezone import now
-from .models import (
+from patient_app.models import (
     MedicalInformation,
     Diagnosis,
     Patient,

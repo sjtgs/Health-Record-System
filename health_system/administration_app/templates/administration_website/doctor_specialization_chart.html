@@ -1,0 +1,41 @@
+<!-- doctor_specialization_chart.html -->
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<canvas id="doctorSpecializationChart" style="width: 75%;"></canvas>
+<script src="{% static 'js/PieChart.min.js'%}"></script>
+<script>
+    var ctx = document.getElementById('doctorSpecializationChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels| safe }},
+    datasets: [{
+        label: 'Doctor Specialization Distribution',
+        data: {{ data| safe }},
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+            }]
+        },
+    options: {
+        responsive: false,
+            maintainAspectRatio: false,
+                scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                    text: 'Doctor Specialization Distribution'
+            }
+        }
+    }
+    });
+</script>
+
+{% endblock %}

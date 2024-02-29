@@ -1,0 +1,51 @@
+{% extends 'website/base.html' %}
+{% block content %}
+
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Nurses Record
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">NRC</th>
+                            <th scope="col">Medical Number</th>
+                            <th scope="col">Specialization</th>
+                            <th scope="col">Hospital</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for nurse in view_nurse_record %}
+                        <tr>
+                            <td><a href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a></td>
+                            <td>{{ nurse.last_name }}</td>
+                            <td>{{ nurse.date_of_birth }}</td>
+                            <td>{{ nurse.gender }}</td>
+                            <td>{{ nurse.nrc }}</td>
+                            <td>{{ nurse.medical_number }}</td>
+                            <td>{{ nurse.specialization }}</td>
+                            <td>{{ nurse.hospitals }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

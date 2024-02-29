@@ -1,9 +1,7 @@
 # doctor_app/views.py
 from django.contrib.auth.decorators import login_required
 from doctor_app.decorators import doctor_role_required
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
-from .forms import DoctorLoginForm, DoctorForm
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
 from doctor_app.models import Doctor
@@ -11,34 +9,30 @@ from patient_app.models import Patient
 from nurse_app.models import Nurse
 
 
-def doctor_login(request):
-    if request.method == "POST":
-        form = DoctorLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("dashboard")
-        else:
-            form = DoctorLoginForm()
-        return render(request, "doctor_website/doctor_login.html", {"form": form})
-
-
-# This Function Displays the list of Entire Doctor Record in the Database
+# This Function Displays the Doctor Dashboard
 @login_required
 @doctor_role_required
-def DoctorLists(request):
-    doctor_lists = Doctor.objects.all()
+def doctor_dashboard(request):
+    doctor_dashboard = Doctor.objects.all()
     return render(
-        request, "doctor_website/doctor_lists.html", {"doctor_lists": doctor_lists}
+        request,
+        "doctor_website/doctor_dashboard.html",
+        {"doctor_dashboard": doctor_dashboard},
     )
 
 
-# This Function Displays the list of Entire Patient Record in the Database# Show the List the of the Patient Records
+# This Function Displays the list of Doctor Record in the Database
+@login_required
+@doctor_role_required
+def view_doctor_record(request):
+    current_doctor = request.user.doctor
+    doctor_record = Doctor.objects.filter(user=request.user)
+    return render(
+        request, "doctor_template/doctor_record.html", {"doctor_record": doctor_record}
+    )
 
 
+# This Function Displays the list of Entire Patient Record in the Database
 @login_required
 @doctor_role_required
 def PatientsLists(request):
@@ -58,41 +52,9 @@ def NurseLists(request):
     )
 
 
-# The function Creates a user based on the information Entered
+# This Function shows all the Details of the Doctor
 @login_required
 @doctor_role_required
-def doctor_form(request):
-    if request.method == "POST":
-        form = DoctorForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect("doctor-detail")
-    else:
-        form = DoctorForm()
-    return render(request, "doctor_website/doctor_form.html", {"form": form})
-
-
-@login_required
-@doctor_role_required
-def doctor_form_edit(request, auto_id):
-    post = get_object_or_404(Doctor, auto_id=auto_id)
-    if request.method == "POST":
-        form = DoctorForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect(
-                "doctor-detail",
-            )
-    else:
-        form = DoctorForm(instance=post)
-    return render(request, "doctor_website/doctor_form.html", {"form": form})
-
-
-@login_required
-@doctor_role_required
-# Detail of the Doctor
 def doctor_detail(request, auto_id):
     doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
     return render(
@@ -100,9 +62,19 @@ def doctor_detail(request, auto_id):
     )
 
 
+# This Function shows all the Details of the Nurse
 @login_required
 @doctor_role_required
-# Details of the Patient
+def nurse_detail(request, auto_id):
+    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    return render(
+        request, "doctor_website/nurse_detail.html", {"nurse_detail": nurse_detail}
+    )
+
+
+# This Function shows all the Details of the Patient
+@login_required
+@doctor_role_required
 def patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
     return render(
@@ -112,19 +84,7 @@ def patient_detail(request, auto_id):
     )
 
 
-@login_required
-@doctor_role_required
-# Details of the Nurse
-def nurse_detail(request, auto_id):
-    nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
-    return render(
-        request, "doctor_website/nurse_detail.html", {"nurse_detail": nurse_detail}
-    )
-
-
 # This API function that displays the list Entire Doctors Records
-
-
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
