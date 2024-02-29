@@ -1,9 +1,10 @@
-[![wakatime](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4.svg)](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4)
+
 [![wakatime](https://wakatime.com/badge/github/sjtgs/Health-Record-System.svg)](https://wakatime.com/badge/github/sjtgs/Health-Record-System)
 
 # Health-Record-System
 
 The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project.
+[![wakatime](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4.svg)](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4)
 
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Login.png>)
 <br>
