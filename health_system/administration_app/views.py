@@ -1,8 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from administration_app.decorators import admin_role_required
-from doctor_app.decorators import doctor_role_required
-from nurse_app.decorators import role_required
-from patient_app.decorators import roles_required
 from django.shortcuts import render, redirect, get_object_or_404
 from administration_app.models import Administrator
 from doctor_app.models import Doctor
@@ -165,7 +162,7 @@ def view_all_records(request):
 
 # This Function Displays the list of Entire Doctors Lists in the Database
 @login_required
-@doctor_role_required
+@admin_role_required
 def doctor_lists(request):
     doctor_lists = Doctor.objects.all()
     return render(
@@ -177,7 +174,7 @@ def doctor_lists(request):
 
 # This Function Displays the list of Entire Nurses Lists in the Database
 @login_required
-@role_required
+@admin_role_required
 def nurse_lists(request):
     nurse_lists = Nurse.objects.all()
     return render(
@@ -189,7 +186,7 @@ def nurse_lists(request):
 
 # This Function Displays the list of Entire Patients Lists in the Database
 @login_required
-@roles_required
+@admin_role_required
 def patient_lists(request):
     patient_lists = Patient.objects.all()
     return render(
@@ -248,7 +245,7 @@ def admin_administrator_detail(request, auto_id):
 
 # The Function Creates a Doctor User based on the information Entered.
 @login_required
-@doctor_role_required
+@admin_role_required
 def doctor_form(request):
     if request.method == "POST":
         form = DoctorForm(request.POST)
@@ -263,7 +260,7 @@ def doctor_form(request):
 
 # The Function Edits a Doctors Information.
 @login_required
-@doctor_role_required
+@admin_role_required
 def doctor_form_edit(request, auto_id):
     post = get_object_or_404(Doctor, auto_id=auto_id)
     if request.method == "POST":
@@ -291,6 +288,7 @@ def admin_doctor_detail(request, auto_id):
 
 # The Function Creates a Nurse User based on the information Entered
 @login_required
+@admin_role_required
 def nurse_form(request):
     if request.method == "POST":
         form = NurseForm(request.POST)
@@ -305,6 +303,7 @@ def nurse_form(request):
 
 # The Function Edits a Nurses Information.
 @login_required
+@admin_role_required
 def nurse_form_edit(request, auto_id):
     post = get_object_or_404(Nurse, auto_id=auto_id)
     if request.method == "POST":
@@ -332,7 +331,7 @@ def admin_nurse_detail(request, auto_id):
 
 # The Function Creates a Nurse User based on the information Entered
 @login_required
-@roles_required
+@admin_role_required
 def patient_form(request):
     if request.method == "POST":
         form = PatientForm(request.POST)
@@ -347,7 +346,7 @@ def patient_form(request):
 
 # The Function Edits a Nurses Information.
 @login_required
-@roles_required
+@admin_role_required
 def patient_form_edit(request, auto_id):
     post = get_object_or_404(Patient, auto_id=auto_id)
     if request.method == "POST":
