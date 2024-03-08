@@ -8,6 +8,7 @@ django-rest-swagger
 bootstrap4
 crispy-bootstrap4 
 crispy_bootstrap4
+django-leaflet
 django-redis
 reportlab
 virtualenvwrapper
