@@ -19,34 +19,38 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 
 ```
 
-    Start:
-        System initialization and login.
+  Start:
+    System initialization and login.
 
-    Dashboard:
-        Display key metrics and notifications.
+Administrator:
+    Access administrator dashboard.
+    Manage doctor, nurse, and patient records.
+    Schedule appointments.
+    View system-wide metrics and notifications.
 
-    Patient Records:
-        Choose "Patient Records" option.
-        Enter or search for a patient's information.
+Doctor:
+    Access doctor dashboard.
+    View patient records.
+    Update patient information.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Data Entry:
-        Record or update patient data using user-friendly forms.
+Nurse:
+    Access nurse dashboard.
+    View patient records.
+    Update patient information.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Appointment Management:
-        Navigate to "Appointment Scheduler."
-        Set, reschedule, or cancel appointments.
+Patient:
+    Access patient dashboard.
+    View personal health records.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Data Viewing:
-        Access "View Records" for reviewing patient history and details.
+End:
+    Logout or exit the system.
 
-    Security Check:
-        Verify user authentication.
-
-    Notification System:
-        Automated reminders for upcoming appointments.
-
-    End:
-        Logout or exit the system.
 
 ```
 
