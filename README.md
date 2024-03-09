@@ -50,53 +50,44 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 
 ```
 
-## Setup Health Record SyStem
+## Features
 
-#### Python 2
+- User authentication: Allows users to register, log in, and log out securely.
+- CRUD operations: Enables medical personnel to create, read, update, and delete patient records.
+- Interactive charts: Provides visual representation of data using Chart.js library.
+- Map integration: Utilizes Django Leaflet to display pharmacy locations on interactive maps.
+- Management commands: Includes management commands to generate dummy data for testing purposes.
+- Cross-platform compatibility: Build script automatically creates and activates a virtual environment based on the operating system (Windows, macOS, or Linux).
 
-```
-~$ python -m venv healthvenv
-```
+## Setup and Installation Health Record SyStem
 
-#### Python 3
+1. Clone the repository:
 
-```
-~$ python3 -m venv healthvenv
-```
+   ```
+   git clone https://github.com/sjtgs/Health-Record-System.git
+   ```
 
-### Activate the Virtual Enviroment
-
-#### Windows
-
-```
-~$ healthvenv\Scripts\activate
-```
-
-#### Linux and OS X
+2. Navigate to the project directory:
 
 ```
-source healthvenv/bin/activate
+cd health-record-system
 ```
 
-### Installing Health System Record Requirements
+3. Run the build script to create and activate the virtual environment:
+
+macOS/Linux:
 
 ```
-(healthvenv) ~$ python -m pip install --upgrade pippython -m pip install --upgrade pip
+./build.sh
 ```
 
-```
-(healthvenv) ~$ python -m pip install -r requirements.txt
-```
-
-## Running the Health Record System application
-
-This command runs the Django Web Application .
+Windows:
 
 ```
-(healthvenv) ~/health_system$ python manage.py runserver   
+build.bat
 ```
 
-## Migrate Health Record System
+4. Migrate Health Record System
 
 This command runs database migrations to ensure your database schema is up to date.
 
@@ -104,12 +95,20 @@ This command runs database migrations to ensure your database schema is up to da
 (healthvenv) ~/health_system$ python manage.py migrate 
 ```
 
-## Create Dummy User  - Administrator , Doctor , Nurse and Patient
+5. Create Dummy User  - Administrator , Doctor , Nurse and Patient
 
 This command will create dummy users for each user type (Administrator, Doctor, Nurse, and Patient) along with appropriate group assignments. Adjust the logic and number of users as per your requirements
 
 ```
 (healthvenv) ~/health_system$ python manage.py create_dummy_users
+```
+
+6. Running the Health Record System application
+
+This command runs the Django Web Application . Access the application in your web browser at <http://127.0.0.1:8000>.
+
+```
+(healthvenv) ~/health_system$ python manage.py runserver   
 ```
 
 ### Administration App
@@ -165,3 +164,23 @@ The Patient App is a Django application designed to manage patient information w
 [14]: Patient / Form - <http://127.0.0.1:8000/Patient/patient-form/>
 <br>
 [15]: Patient / Form Edit - <http://127.0.0.1:8000/patient/><int:auto_id>/patient-form-edit/
+
+### Usage
+
+    1. Log in as an administrator to manage medical personnel, patient records, and pharmacy locations.
+    2. Log in as a doctor, nurse, or patient to view and manage relevant data.
+    3. Explore interactive charts to visualize medical statistics.
+    4. Use the map feature to locate nearby pharmacies.
+
+### Contributing
+
+    1.Fork the repository and create your branch from main.
+    2. Make your changes and ensure that the code follows PEP 8 guidelines.
+    3. Write tests for your changes, if applicable.
+    4. Ensure all tests pass by running python manage.py test.
+    4. Commit your changes with descriptive commit messages.
+    5. Push your changes to your fork and submit a pull request.
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
