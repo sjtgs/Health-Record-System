@@ -129,41 +129,26 @@ The Patient App is a Django application designed to manage patient information w
 
 ## Health Record SyStem - URLS
 
-[1]: Administrator  - <http://127.0.0.1:8000/administrator/admin-dashboard/>
-<br>
-[1.1] Administrator / Doctor - <http://127.0.0.1:8000/administrator/doctor-form/>
-<br>
-[1.2] Administrator / Nurse - <http://127.0.0.1:8000/administrator/nurse-form/>
-<br>
-[1.3] Administrator / Patient - <http://127.0.0.1:8000/administrator/patient-form/>
-<br>
-[2]: Doctor / Doctor Lists - <http://127.0.0.1:8000/doctor/doctor-lists/>  
-<br>
-[3]: Doctor / Patient Lists - <http://127.0.0.1:8000/doctor/patient-lists/>
-<br>
-[4]: Doctor / Nurse Lists -  <http://127.0.0.1:8000/doctor/nurse-lists/>
-<br>
-[5]: Nurse / Nurse Lists - <http://127.0.0.1:8000/nurse/nurse-lists/>
-<br>
-[6]: Nurse / Patient Lists - <http://127.0.0.1:8000/nurse/patient-lists/>
-<br>
-[7]: API - Doctor / Lists - <http://127.0.0.1:8000/api/doctors/doctors/>
-<br>
-[8]: API - Nurse /  Lists - <http://127.0.0.1:8000/api/nurses/nurses/>
-<br>
-[9]: API - Patient / Lists - <http://127.0.0.1:8000/api/patients/patients/>
-<br>
-[10]: Doctor / Form - <http://127.0.0.1:8000/doctor/doctor-form/>
-<br>
-[11]: Doctor / Form Edit - <http://127.0.0.1:8000/doctor/><int:auto_id>/doctor-form-edit/
-<br>
-[12]: Nurse / Form - <http://127.0.0.1:8000/nurse/nurse-form/>
-<br>
-[13]: Nurse / Form Edit - <http://127.0.0.1:8000/nurse/><int:auto_id>/nurse-form-edit/
-<br>
-[14]: Patient / Form - <http://127.0.0.1:8000/Patient/patient-form/>
-<br>
-[15]: Patient / Form Edit - <http://127.0.0.1:8000/patient/><int:auto_id>/patient-form-edit/
+| Link Description | URL |
+|------------------|-----|
+| Administrator    | [Administrator](http://127.0.0.1:8000/administrator/admin-dashboard/) |
+| Administrator / Doctor | [Administrator / Doctor](http://127.0.0.1:8000/administrator/doctor-form/) |
+| Administrator / Nurse | [Administrator / Nurse](http://127.0.0.1:8000/administrator/nurse-form/) |
+| Administrator / Patient | [Administrator / Patient](http://127.0.0.1:8000/administrator/patient-form/) |
+| Doctor / Doctor Lists | [Doctor / Doctor Lists](http://127.0.0.1:8000/doctor/doctor-lists/) |
+| Doctor / Patient Lists | [Doctor / Patient Lists](http://127.0.0.1:8000/doctor/patient-lists/) |
+| Doctor / Nurse Lists | [Doctor / Nurse Lists](http://127.0.0.1:8000/doctor/nurse-lists/) |
+| Nurse / Nurse Lists | [Nurse / Nurse Lists](http://127.0.0.1:8000/nurse/nurse-lists/) |
+| Nurse / Patient Lists | [Nurse / Patient Lists](http://127.0.0.1:8000/nurse/patient-lists/) |
+| API - Doctor / Lists | [API - Doctor / Lists](http://127.0.0.1:8000/api/doctors/doctors/) |
+| API - Nurse / Lists | [API - Nurse / Lists](http://127.0.0.1:8000/api/nurses/nurses/) |
+| API - Patient / Lists | [API - Patient / Lists](http://127.0.0.1:8000/api/patients/patients/) |
+| Doctor / Form | [Doctor / Form](http://127.0.0.1:8000/doctor/doctor-form/) |
+| Doctor / Form Edit | [Doctor / Form Edit](http://127.0.0.1:8000/doctor/int:auto_id/doctor-form-edit/) |
+| Nurse / Form | [Nurse / Form](http://127.0.0.1:8000/nurse/nurse-form/) |
+| Nurse / Form Edit | [Nurse / Form Edit](http://127.0.0.1:8000/nurse/int:auto_id/nurse-form-edit/) |
+| Patient / Form | [Patient / Form](http://127.0.0.1:8000/Patient/patient-form/) |
+| Patient / Form Edit | [Patient / Form Edit](http://127.0.0.1:8000/patient/int:auto_id/patient-form-edit/) |
 
 ### Usage
 
