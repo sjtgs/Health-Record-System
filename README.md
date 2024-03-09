@@ -90,9 +90,7 @@ source healthvenv/bin/activate
 
 ## Running the Health Record System application
 
-```
-(healthvenv) ~$  cd health_system
-```
+This command runs the Django Web Application .
 
 ```
 (healthvenv) ~/health_system$ python manage.py runserver   
@@ -100,11 +98,19 @@ source healthvenv/bin/activate
 
 ## Migrate Health Record System
 
+This command runs database migrations to ensure your database schema is up to date.
+
 ```
 (healthvenv) ~/health_system$ python manage.py migrate 
 ```
 
-## Health Record System Application
+## Create Dummy User  - Administrator , Doctor , Nurse and Patient
+
+This command will create dummy users for each user type (Administrator, Doctor, Nurse, and Patient) along with appropriate group assignments. Adjust the logic and number of users as per your requirements
+
+```
+(healthvenv) ~/health_system$ python manage.py create_dummy_users
+```
 
 ### Administration App
 
