@@ -109,7 +109,11 @@ This command will create dummy users for each user type (Administrator, Doctor, 
 
 6. Running the Health Record System application
 
-This command runs the Django Web Application . Access the application in your web browser at <http://127.0.0.1:8000>.
+This command runs the Django Web Application . Access the application in your web browser :
+
+| Link Description | URL |
+|------------------|-----|
+| Home Page    | [Home Page](http://127.0.0.1:8000) |
 
 ```
 (healthvenv) ~/health_system$ python manage.py runserver   
@@ -135,6 +139,7 @@ The Patient App is a Django application designed to manage patient information w
 
 | Link Description | URL |
 |------------------|-----|
+| Home Page    | [Home Page](http://127.0.0.1:8000) |
 | Administrator    | [Administrator](http://127.0.0.1:8000/administrator/admin-dashboard/) |
 | Administrator / Doctor | [Administrator / Doctor](http://127.0.0.1:8000/administrator/doctor-form/) |
 | Administrator / Nurse | [Administrator / Nurse](http://127.0.0.1:8000/administrator/nurse-form/) |
