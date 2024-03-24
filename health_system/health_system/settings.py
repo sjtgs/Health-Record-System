@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 
-# Set the GDAL_LIBRARY_PATH to the location of the GDAL DLL file
-# GDAL_LIBRARY_PATH = r'C:\path\to\your\GDAL\installation\bin\gdal300.dll'  # Adjust the path accordingly
-
 
 from pathlib import Path
 
@@ -59,8 +56,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "bootstrap4",
     "crispy_bootstrap4",
-    "leaflet",
-    "django.contrib.gis",
 ]
 
 CRISPY_TEMPLATE_PACK = "uni_form"

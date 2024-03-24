@@ -8,7 +8,7 @@ class Pharmacy(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
     town = models.ForeignKey(Town, on_delete=models.CASCADE)
-    location = models.PointField()
+ 
     phone_number = models.PositiveIntegerField()
     email = models.EmailField()
 
