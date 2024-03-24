@@ -19,92 +19,105 @@ The Health Record System is a user-friendly digital platform that efficiently ma
 
 ```
 
-    Start:
-        System initialization and login.
+  Start:
+    System initialization and login.
 
-    Dashboard:
-        Display key metrics and notifications.
+Administrator:
+    Access administrator dashboard.
+    Manage doctor, nurse, and patient records.
+    Schedule appointments.
+    View system-wide metrics and notifications.
 
-    Patient Records:
-        Choose "Patient Records" option.
-        Enter or search for a patient's information.
+Doctor:
+    Access doctor dashboard.
+    View patient records.
+    Update patient information.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Data Entry:
-        Record or update patient data using user-friendly forms.
+Nurse:
+    Access nurse dashboard.
+    View patient records.
+    Update patient information.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Appointment Management:
-        Navigate to "Appointment Scheduler."
-        Set, reschedule, or cancel appointments.
+Patient:
+    Access patient dashboard.
+    View personal health records.
+    Schedule appointments.
+    Receive notifications for upcoming appointments.
 
-    Data Viewing:
-        Access "View Records" for reviewing patient history and details.
+End:
+    Logout or exit the system.
 
-    Security Check:
-        Verify user authentication.
-
-    Notification System:
-        Automated reminders for upcoming appointments.
-
-    End:
-        Logout or exit the system.
-
-```
-
-## Setup Health Record SyStem
-
-#### Python 2
 
 ```
-~$ python -m venv healthvenv
-```
 
-#### Python 3
+## Features
 
-```
-~$ python3 -m venv healthvenv
-```
+- User authentication: Allows users to register, log in, and log out securely.
+- CRUD operations: Enables medical personnel to create, read, update, and delete patient records.
+- Interactive charts: Provides visual representation of data using Chart.js library.
+- Map integration: Utilizes Django Leaflet to display pharmacy locations on interactive maps.
+- Management commands: Includes management commands to generate dummy data for testing purposes.
+- Cross-platform compatibility: Build script automatically creates and activates a virtual environment based on the operating system (Windows, macOS, or Linux).
 
-### Activate the Virtual Enviroment
+## Setup and Installation Health Record SyStem
 
-#### Windows
+1. Clone the repository:
 
-```
-~$ healthvenv\Scripts\activate
-```
+   ```
+   git clone https://github.com/sjtgs/Health-Record-System.git
+   ```
 
-#### Linux and OS X
-
-```
-source healthvenv/bin/activate
-```
-
-### Installing Health System Record Requirements
+2. Navigate to the project directory:
 
 ```
-(healthvenv) ~$ python -m pip install --upgrade pippython -m pip install --upgrade pip
+cd health-record-system
 ```
 
-```
-(healthvenv) ~$ python -m pip install -r requirements.txt
-```
+3. Run the build script to create and activate the virtual environment:
 
-## Running the Health Record System application
+macOS/Linux:
 
 ```
-(healthvenv) ~$  cd health_system
+./build.sh
 ```
 
+Windows:
+
 ```
-(healthvenv) ~/health_system$ python manage.py runserver   
+build.bat
 ```
 
-## Migrate Health Record System
+4. Migrate Health Record System
+
+This command runs database migrations to ensure your database schema is up to date.
 
 ```
 (healthvenv) ~/health_system$ python manage.py migrate 
 ```
 
-## Health Record System Application
+5. Create Dummy User  - Administrator , Doctor , Nurse and Patient
+
+This command will create dummy users for each user type (Administrator, Doctor, Nurse, and Patient) along with appropriate group assignments. Adjust the logic and number of users as per your requirements
+
+```
+(healthvenv) ~/health_system$ python manage.py create_dummy_users
+```
+
+6. Running the Health Record System application
+
+This command runs the Django Web Application . Access the application in your web browser :
+
+| Link Description | URL |
+|------------------|-----|
+| Home Page    | [Home Page](http://127.0.0.1:8000) |
+
+```
+(healthvenv) ~/health_system$ python manage.py runserver   
+```
 
 ### Administration App
 
@@ -124,38 +137,44 @@ The Patient App is a Django application designed to manage patient information w
 
 ## Health Record SyStem - URLS
 
-[1]: Administrator  - <http://127.0.0.1:8000/administrator/admin-dashboard/>
-<br>
-[1.1] Administrator / Doctor - <http://127.0.0.1:8000/administrator/doctor-form/>
-<br>
-[1.2] Administrator / Nurse - <http://127.0.0.1:8000/administrator/nurse-form/>
-<br>
-[1.3] Administrator / Patient - <http://127.0.0.1:8000/administrator/patient-form/>
-<br>
-[2]: Doctor / Doctor Lists - <http://127.0.0.1:8000/doctor/doctor-lists/>  
-<br>
-[3]: Doctor / Patient Lists - <http://127.0.0.1:8000/doctor/patient-lists/>
-<br>
-[4]: Doctor / Nurse Lists -  <http://127.0.0.1:8000/doctor/nurse-lists/>
-<br>
-[5]: Nurse / Nurse Lists - <http://127.0.0.1:8000/nurse/nurse-lists/>
-<br>
-[6]: Nurse / Patient Lists - <http://127.0.0.1:8000/nurse/patient-lists/>
-<br>
-[7]: API - Doctor / Lists - <http://127.0.0.1:8000/api/doctors/doctors/>
-<br>
-[8]: API - Nurse /  Lists - <http://127.0.0.1:8000/api/nurses/nurses/>
-<br>
-[9]: API - Patient / Lists - <http://127.0.0.1:8000/api/patients/patients/>
-<br>
-[10]: Doctor / Form - <http://127.0.0.1:8000/doctor/doctor-form/>
-<br>
-[11]: Doctor / Form Edit - <http://127.0.0.1:8000/doctor/><int:auto_id>/doctor-form-edit/
-<br>
-[12]: Nurse / Form - <http://127.0.0.1:8000/nurse/nurse-form/>
-<br>
-[13]: Nurse / Form Edit - <http://127.0.0.1:8000/nurse/><int:auto_id>/nurse-form-edit/
-<br>
-[14]: Patient / Form - <http://127.0.0.1:8000/Patient/patient-form/>
-<br>
-[15]: Patient / Form Edit - <http://127.0.0.1:8000/patient/><int:auto_id>/patient-form-edit/
+| Link Description | URL |
+|------------------|-----|
+| Home Page    | [Home Page](http://127.0.0.1:8000) |
+| Administrator    | [Administrator](http://127.0.0.1:8000/administrator/admin-dashboard/) |
+| Administrator / Doctor | [Administrator / Doctor](http://127.0.0.1:8000/administrator/doctor-form/) |
+| Administrator / Nurse | [Administrator / Nurse](http://127.0.0.1:8000/administrator/nurse-form/) |
+| Administrator / Patient | [Administrator / Patient](http://127.0.0.1:8000/administrator/patient-form/) |
+| Doctor / Doctor Lists | [Doctor / Doctor Lists](http://127.0.0.1:8000/doctor/doctor-lists/) |
+| Doctor / Patient Lists | [Doctor / Patient Lists](http://127.0.0.1:8000/doctor/patient-lists/) |
+| Doctor / Nurse Lists | [Doctor / Nurse Lists](http://127.0.0.1:8000/doctor/nurse-lists/) |
+| Nurse / Nurse Lists | [Nurse / Nurse Lists](http://127.0.0.1:8000/nurse/nurse-lists/) |
+| Nurse / Patient Lists | [Nurse / Patient Lists](http://127.0.0.1:8000/nurse/patient-lists/) |
+| API - Doctor / Lists | [API - Doctor / Lists](http://127.0.0.1:8000/api/doctors/doctors/) |
+| API - Nurse / Lists | [API - Nurse / Lists](http://127.0.0.1:8000/api/nurses/nurses/) |
+| API - Patient / Lists | [API - Patient / Lists](http://127.0.0.1:8000/api/patients/patients/) |
+| Doctor / Form | [Doctor / Form](http://127.0.0.1:8000/doctor/doctor-form/) |
+| Doctor / Form Edit | [Doctor / Form Edit](http://127.0.0.1:8000/doctor/int:auto_id/doctor-form-edit/) |
+| Nurse / Form | [Nurse / Form](http://127.0.0.1:8000/nurse/nurse-form/) |
+| Nurse / Form Edit | [Nurse / Form Edit](http://127.0.0.1:8000/nurse/int:auto_id/nurse-form-edit/) |
+| Patient / Form | [Patient / Form](http://127.0.0.1:8000/Patient/patient-form/) |
+| Patient / Form Edit | [Patient / Form Edit](http://127.0.0.1:8000/patient/int:auto_id/patient-form-edit/) |
+
+### Usage
+
+    1. Log in as an administrator to manage medical personnel, patient records, and pharmacy locations.
+    2. Log in as a doctor, nurse, or patient to view and manage relevant data.
+    3. Explore interactive charts to visualize medical statistics.
+    4. Use the map feature to locate nearby pharmacies.
+
+### Contributing
+
+    1.Fork the repository and create your branch from main.
+    2. Make your changes and ensure that the code follows PEP 8 guidelines.
+    3. Write tests for your changes, if applicable.
+    4. Ensure all tests pass by running python manage.py test.
+    4. Commit your changes with descriptive commit messages.
+    5. Push your changes to your fork and submit a pull request.
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
