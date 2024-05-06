@@ -2,16 +2,16 @@
 
 REM Create Virtual Environment called healthvenv
 if "%OS%"=="Windows_NT" (
-    python -m venv healthvenv
+    python -m venv healthvenvs
 ) else (
-    python3 -m venv healthvenv
+    python3 -m venv healthvenvs
 )
 
 REM Activate virtual environment
 if "%OS%"=="Windows_NT" (
-    call healthvenv\Scripts\activate
+    call healthvenvs\Scripts\activate.bat
 ) else (
-    source healthvenv/bin/activate
+    source healthvenvs/bin/activate
 )
 
 REM Install Application Requirements 
