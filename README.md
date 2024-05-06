@@ -5,14 +5,21 @@
 
 The Health Record System is a user-friendly digital platform that efficiently manages patient data and facilitates the scheduling of appointments for cancer treatment. This system enables the seamless recording of patient information, including medical history and relevant details. Doctors can easily access and review this data, empowering them to set appointments and provide timely, personalized care for their patients undergoing cancer treatment. Open Source Project.
 
+![alt text](<health_system/images/Health Record SyStem - Home Page.png>)
+<br>
+
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Login.png>)
 <br>
+
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Administrator.png>)
 <br>
+
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Visual.png>)
 <br>
+
 ![alt text](<health_system/images/Health Record SyStem Dashboard - Doctor Form.png>)
 <br>
+
 ![alt text](<health_system/images/Unauthorized Health Record SyStem Dashboard.png>)
 
 ## Text Based - Flow Chart
