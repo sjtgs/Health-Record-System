@@ -50,13 +50,13 @@ LOGGING = {
         "nurse_logfile": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logsnurse.log"),
+            "filename": os.path.join(LOG_DIR, "logs/nurse.log"),
             "formatter": "verbose",
         },
-        "administration_logfile": {
+        "administrations_logfile": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/administration.log"),
+            "filename": os.path.join(LOG_DIR, "logs/administrations.log"),
             "formatter": "verbose",
         },
         "pharmacy_logfile": {
@@ -89,7 +89,7 @@ LOGGING = {
             "propagate": True,
         },
         "administration": {
-            "handlers": ["administration_logfile"],
+            "handlers": ["administrations_logfile"],
             "level": "DEBUG",
             "propagate": True,
         },

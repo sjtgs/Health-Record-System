@@ -1,4 +1,18 @@
-<h1>HEALTH RECORD SYSTEM HOME PAGE</h1>
-<h2>COMMING SOON</h2>
+{% extends 'website/base_home.html' %}
+{% block content %}
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-lg-6">
 
-<a href="{% url 'login' %}">Login</a>
+                <h1 class="mt-5">HEALTH RECORD SYSTEM </h1>
+                <!-- <h2>COMMING SOON</h2> -->
+                <p>The Health Record System organizes patient data, schedules cancer treatment appointments,
+                    and allows doctors easy access to review and set appointments for personalized care,
+                    streamlining the healthcare process. </p>
+                <a type="button" class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
