@@ -261,6 +261,7 @@ def doctor_form(request):
             post = form.save(commit=False)
             post.save()
             log_doctor_creation(post)
+
             return redirect("admin-doctor-detail", auto_id=post.auto_id)
     else:
         form = DoctorForm()
