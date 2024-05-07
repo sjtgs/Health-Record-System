@@ -7,6 +7,7 @@ from .logger import (
     log_nurse_creation,
     log_patient_creation,
 )
+from django.shortcuts import redirect
 from administration_app.models import Administrator
 
 from doctor_app.models import Doctor
@@ -261,7 +262,7 @@ def doctor_form(request):
             post = form.save(commit=False)
             post.save()
             log_doctor_creation(post)
-
+            # Redirect to admin-doctor-detail with auto_id parameter
             return redirect("admin-doctor-detail", auto_id=post.auto_id)
     else:
         form = DoctorForm()
@@ -278,7 +279,7 @@ def doctor_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("admin-doctor-detail", auto_id=auto_id)
+            return redirect("admin-doctor-detail/", auto_id=auto_id)
     else:
         form = DoctorForm(instance=post)
     return render(request, "administration_website/doctor_form.html", {"form": form})
@@ -306,7 +307,7 @@ def nurse_form(request):
             post = form.save(commit=False)
             post.save()
             log_nurse_creation(post)
-            return redirect("nurse-lists", auto_id=post.auto_id)
+            return redirect("admin-nurse-detail", auto_id=post.auto_id)
     else:
         form = NurseForm()
     return render(request, "administration_website/nurse_form.html", {"form": form})
@@ -322,7 +323,7 @@ def nurse_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("nurse-lists", auto_id=post.auto_id)
+            return redirect("admin-nurse-detail", auto_id=post.auto_id)
     else:
         form = NurseForm(instance=post)
     return render(request, "administration_website/nurse_form.html", {"form": form})
@@ -350,7 +351,7 @@ def patient_form(request):
             post = form.save(commit=False)
             post.save()
             log_patient_creation(post)
-            return redirect("patient-lists", auto_id=post.auto_id)
+            return redirect("admin-patient-detail", auto_id=post.auto_id)
     else:
         form = PatientForm()
     return render(request, "administration_website/patient_form.html", {"form": form})
@@ -366,7 +367,7 @@ def patient_form_edit(request, auto_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect("patient-lists", auto_id=post.auto_id)
+            return redirect("admin-patient-detail", auto_id=post.auto_id)
     else:
         form = PatientForm(instance=post)
     return render(request, "administration_website/patient_form.html", {"form": form})
