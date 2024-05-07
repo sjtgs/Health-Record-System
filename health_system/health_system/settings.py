@@ -19,92 +19,92 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOG_DIR = os.path.join(BASE_DIR, "logs")
+# LOG_DIR = os.path.join(BASE_DIR, "logs")
 
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)
+# if not os.path.exists(LOG_DIR):
+#     os.makedirs(LOG_DIR)
 
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "formate": "{levelname} {asctime} {module} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "doctor_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/doctor.log"),
-            "formatter": "verbose",
-        },
-        "patient_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/patient.log"),
-            "formatter": "verbose",
-        },
-        "nurse_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/nurse.log"),
-            "formatter": "verbose",
-        },
-        "administrations_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/administrations.log"),
-            "formatter": "verbose",
-        },
-        "pharmacy_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/pharmacy.log"),
-            "formatter": "verbose",
-        },
-        "insurance_logfile": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "logs/insurance.log"),
-            "formatter": "verbose",
-        },
-    },
-    "logger": {
-        "doctor": {
-            "handlers": ["doctor_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "patient": {
-            "handlers": ["patient_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "nurse": {
-            "handlers": ["nurse_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "administration": {
-            "handlers": ["administrations_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "pharmacy": {
-            "handlers": ["pharmacy_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "insurance": {
-            "handlers": ["insurance_logfile"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-    },
-}
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "verbose": {
+#             "formate": "{levelname} {asctime} {module} {message}",
+#             "style": "{",
+#         },
+#     },
+#     "handlers": {
+#         "doctor_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/doctor.log"),
+#             "formatter": "verbose",
+#         },
+#         "patient_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/patient.log"),
+#             "formatter": "verbose",
+#         },
+#         "nurse_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/nurse.log"),
+#             "formatter": "verbose",
+#         },
+#         "administrations_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/administrations.log"),
+#             "formatter": "verbose",
+#         },
+#         "pharmacy_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/pharmacy.log"),
+#             "formatter": "verbose",
+#         },
+#         "insurance_logfile": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": os.path.join(LOG_DIR, "logs/insurance.log"),
+#             "formatter": "verbose",
+#         },
+#     },
+#     "logger": {
+#         "doctor": {
+#             "handlers": ["doctor_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "patient": {
+#             "handlers": ["patient_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "nurse": {
+#             "handlers": ["nurse_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "administration": {
+#             "handlers": ["administrations_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "pharmacy": {
+#             "handlers": ["pharmacy_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "insurance": {
+#             "handlers": ["insurance_logfile"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#     },
+# }
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

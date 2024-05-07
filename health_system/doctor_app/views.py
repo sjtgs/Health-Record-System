@@ -1,9 +1,12 @@
 # doctor_app/views.py
+
+
 from django.contrib.auth.decorators import login_required
 from doctor_app.decorators import doctor_role_required
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from doctor_app.serializers import DoctorSerializer
+
 from doctor_app.models import Doctor
 from patient_app.models import Patient
 from nurse_app.models import Nurse

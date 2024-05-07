@@ -1,7 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from administration_app.decorators import admin_role_required
 from django.shortcuts import render, redirect, get_object_or_404
+from .logger import (
+    log_administrator_creation,
+    log_doctor_creation,
+    log_nurse_creation,
+    log_patient_creation,
+)
 from administration_app.models import Administrator
+
 from doctor_app.models import Doctor
 from nurse_app.models import Nurse
 from patient_app.models import Patient
@@ -205,6 +212,7 @@ def administrator_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            log_administrator_creation(post)
             return redirect("administrator-detail", auto_id=post.auto_id)
     else:
         form = AdministratorForm()
@@ -252,6 +260,7 @@ def doctor_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            log_doctor_creation(post)
             return redirect("admin-doctor-detail", auto_id=post.auto_id)
     else:
         form = DoctorForm()
@@ -295,6 +304,7 @@ def nurse_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            log_nurse_creation(post)
             return redirect("nurse-lists", auto_id=post.auto_id)
     else:
         form = NurseForm()
@@ -338,6 +348,7 @@ def patient_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            log_patient_creation(post)
             return redirect("patient-lists", auto_id=post.auto_id)
     else:
         form = PatientForm()
