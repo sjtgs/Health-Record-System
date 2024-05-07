@@ -69,6 +69,7 @@ End:
 - Map integration: Utilizes Django Leaflet to display pharmacy locations on interactive maps.
 - Management commands: Includes management commands to generate dummy data for testing purposes.
 - Cross-platform compatibility: Build script automatically creates and activates a virtual environment based on the operating system (Windows, macOS, or Linux).
+- User Creation Logs: Check the User Creation Logs for the Administrator , Doctor , Nurse and Patient
 
 ## Setup and Installation Health Record SyStem
 
