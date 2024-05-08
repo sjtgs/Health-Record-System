@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4.svg)](https://wakatime.com/badge/user/bdc21cbc-aa7c-4598-8214-34428f55f625/project/018d5f0c-c576-46e1-9304-efbb926e54d4)
+
 [![wakatime](https://wakatime.com/badge/github/sjtgs/Health-Record-System.svg)](https://wakatime.com/badge/github/sjtgs/Health-Record-System)
 
 # Health-Record-System
