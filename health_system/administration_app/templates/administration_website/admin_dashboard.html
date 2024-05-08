@@ -161,7 +161,7 @@
                                 {% for doctor in doctors_records %}
                                 <tr>
                                     <td><a
-                                            href="{% url 'doctor-detail' auto_id=doctor.auto_id %}">{{doctor.first_name }}</a>
+                                            href="{% url 'admin-doctor-detail' auto_id=doctor.auto_id %}">{{doctor.first_name }}</a>
                                     </td>
                                     <td>{{ doctor.last_name }}</td>
                                     <td>{{ doctor.date_of_birth }}</td>
@@ -208,7 +208,7 @@
                                 {% for nurse in nurses_records %}
                                 <tr>
                                     <td><a
-                                            href="{% url 'nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a>
+                                            href="{% url 'admin-nurse-detail' auto_id=nurse.auto_id %}">{{ nurse.first_name }}</a>
                                     </td>
                                     <td>{{ nurse.last_name }}</td>
                                     <td>{{ nurse.date_of_birth }}</td>
@@ -289,7 +289,7 @@
                                 {% for patient in patients_records %}
                                 <tr>
                                     <td><a
-                                            href="{% url 'patient-detail' auto_id=patient.auto_id %}">{{ patient.first_name }}</a>
+                                            href="{% url 'admin-patient-detail' auto_id=patient.auto_id %}">{{ patient.first_name }}</a>
                                     </td>
                                     <td>{{ patient.last_name }}</td>
                                     <td>{{ patient.date_of_birth }}</td>
