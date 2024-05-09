@@ -7,6 +7,7 @@ from administration_app.logger import (
     log_nurse_creation,
     log_patient_creation,
 )
+
 from django.shortcuts import redirect
 from administration_app.models import Administrator
 
