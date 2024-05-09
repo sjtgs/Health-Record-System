@@ -1,0 +1,13 @@
+{% extends 'website/base.html' %}
+{% block content %}
+
+
+<main>
+    <h2>Appointment Details</h2>
+    <p> Patient: {{ appointment.patient }}</p>
+    <p> Nurse: {{ appointment.nurse }}</p>
+    <p> Doctor: {{ appointment.doctor }}</p>
+    <p> Date: {{ appointment.appointment_date}}</p>
+</main>
+
+{% endblock %}

@@ -5,8 +5,9 @@ from nurse_app.decorators import role_required
 
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
-from nurse_app.models import Nurse
+from nurse_app.models import Nurse, Appointment
 from patient_app.models import Patient
+from nurse_app.forms import AppointmentForm
 
 
 # This Function Displays the list of Entire Patient Record in the Database
@@ -52,3 +53,26 @@ def patient_detail(request, auto_id):
 class NurseViewSet(viewsets.ModelViewSet):
     queryset = Nurse.objects.all()
     serializer_class = NurseSerializer
+
+
+# Booking Appointment Form
+
+
+def book_appointment(request):
+    if request.method == "POST":
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.nurse = request.user.nurse
+            appointment.save()
+            return redirect("appointment_detail", appointment_id=appointment.id)
+    else:
+        form = AppointmentForm()
+    return render(request, "nurse_website/book_appointment.html", {"form": form})
+
+
+def appointment_detail(request, appointment_id):
+    appointment = Appointment.objects.get(pk=appointment_id)
+    return render(
+        request, "nurse_website/appointment_detail.html", {"appointment": appointment}
+    )
