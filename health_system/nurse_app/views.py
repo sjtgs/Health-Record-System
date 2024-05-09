@@ -5,6 +5,7 @@ from nurse_app.decorators import role_required
 
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
+from nurse_app.logger import log_patient_book_appointment
 from nurse_app.models import Nurse, Appointment
 from patient_app.models import Patient
 from nurse_app.forms import AppointmentForm
@@ -65,6 +66,7 @@ def book_appointment(request):
             appointment = form.save(commit=False)
             appointment.nurse = request.user.nurse
             appointment.save()
+            log_patient_book_appointment(appointment)
             return redirect("appointment_detail", appointment_id=appointment.id)
     else:
         form = AppointmentForm()

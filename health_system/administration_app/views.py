@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from administration_app.decorators import admin_role_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .logger import (
+from administration_app.logger import (
     log_administrator_creation,
     log_doctor_creation,
     log_nurse_creation,
