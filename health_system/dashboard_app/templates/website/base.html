@@ -62,9 +62,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
+
+
+                        <!-- begin of forms  -->
+                        <!-- Based on the user group show the links below -->
+                        <!-- {% if user.groups.all.0.name == "Administrator" or user.groups.all.0.name == "Nurse" %} -->
+                        {% if user.groups.all.0.name == "Administrator" %}
                         <div class="sb-sidenav-menu-heading">Interface</div>
-
-
 
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
@@ -72,17 +76,24 @@
                             Charts
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        {% endif %}
+                        <!--   {% endif %}-->
+
+
+
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
                                 <!-- Doctor -->
+
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                     data-bs-target="#pagesCollapseAuth" aria-expanded="false"
                                     aria-controls="pagesCollapseAuth">
                                     Doctor
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
+
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                     data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
@@ -129,14 +140,19 @@
                                 <!-- end  -->
                             </nav>
                         </div>
+                        <!-- end of forms  -->
 
                         <!-- Forms -->
+                        <!-- Based on the user group show the links below -->
+                        {% if user.groups.all.0.name == "Administrator" %}
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#formsLayouts"
                             aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
                             Forms
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        {% endif %}
+
 
                         <div class="collapse" id="formsLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
