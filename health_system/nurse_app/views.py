@@ -1,14 +1,16 @@
 # nurse_app/views.py
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from nurse_app.decorators import role_required
-
 from rest_framework import viewsets
 from nurse_app.serializers import NurseSerializer
 from nurse_app.logger import log_patient_book_appointment
 from nurse_app.models import Nurse, Appointment
 from patient_app.models import Patient
-from nurse_app.forms import AppointmentForm
+from nurse_app.forms import NurseUploadForm, AppointmentForm
+import csv
+from io import TextIOWrapper
 
 
 # This Function Displays the list of Entire Patient Record in the Database
@@ -81,3 +83,35 @@ def appointment_detail(request, appointment_id):
     return render(
         request, "nurse_website/appointment_detail.html", {"appointment": appointment}
     )
+
+
+# Uploading Nurse User
+def upload_nurse(request):
+    if request.method == "POST":
+        form = NurseUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = TextIOWrapper(request.FILES["file"].file, encoding="utf-8")
+            reader = csv.DictReader(file)
+            for row in reader:
+                nurse = Nurse(
+                    first_name=row["First Name"],
+                    last_name=row["Last Name"],
+                    date_of_birth=row["Date of Birth"],
+                    gender=row["Gender"],
+                    nrc=row["NRC"],
+                    countries_id=row["Country"],
+                    provinces_id=row["Province"],
+                    towns_id=row["Town"],
+                    address=row["Address"],
+                    medical_number=row["Medical Number"],
+                    hospitals_id=row["Hospital"],
+                    specialization=row["Specialization"],
+                    years_of_experience=row["Years of Experience"],
+                    email=row["Email"],
+                    phone_number=row["Phone Number"],
+                )
+                nurse.save()
+            return HttpResponse("File uploaded successfully.")
+    else:
+        form = NurseUploadForm()
+    return render(request, "nurse_website/upload_nurse.html", {"form": form})

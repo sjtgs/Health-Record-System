@@ -47,29 +47,28 @@ class Nurse(models.Model):
         return f"{self.first_name}{self.last_name}"
 
     def save(self, *args, **kwargs):
-        # Check if the username for the Nurse exist, if it doesn't create a new one.The username and the password same
+        # Check if the username for the Nurse exists, if it doesn't create a new one
         if not self.user:
-            username = (self.first_name[:2] + self.last_name[:2] + self.nrc[:4]).lower()
+            username_base = (
+                self.first_name[:2] + self.last_name[:2] + self.nrc[:4]
+            ).lower()
+            username = username_base
+            suffix = 1
 
-            password = username
+            # Ensure the username is unique
+            while User.objects.filter(username=username).exists():
+                username = f"{username_base}{suffix}"
+                suffix += 1
 
-            # Create a New Nurse User
+            # Create a new Nurse User
             self.user = User.objects.create_user(
                 username=username,
                 first_name=self.first_name,
                 last_name=self.last_name,
-                password=password,
+                password=username,  # Use the username as the password
             )
 
-        if not self.group:
-            # Get or create Nurse group
-            nurse_group, _ = Group.objects.get_or_create(name="Nurse")
-            self.group = nurse_group
-
         super().save(*args, **kwargs)
-        nurse_group, _ = Group.objects.get_or_create(name="Nurse")
-        self.user.groups.add(nurse_group)
-        self.user.save()
 
 
 class NurseImage(models.Model):
