@@ -59,7 +59,10 @@ def NurseLists(request):
 @login_required
 @doctor_role_required
 def doctor_detail(request, auto_id):
+    logged_in_user = request.user
     doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
+    if logged_in_user != doctor_detail.user:
+        return render(request, "website/forbidden_page.html", status=403)
     return render(
         request, "doctor_website/doctor_detail.html", {"doctor_detail": doctor_detail}
     )
@@ -79,6 +82,7 @@ def nurse_detail(request, auto_id):
 @login_required
 @doctor_role_required
 def patient_detail(request, auto_id):
+
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
     return render(
         request,

@@ -32,7 +32,10 @@ class PatientViewSet(viewsets.ModelViewSet):
 @login_required
 @roles_required
 def patient_detail(request, auto_id):
+    logged_in_user = request.user
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    if logged_in_user != patient_detail.user:
+        return render(request, "website/forbidden_page.html", status=403)
     return render(
         request,
         "patient_website/patient_detail.html",

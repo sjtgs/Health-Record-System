@@ -36,7 +36,10 @@ def view_nurse_record(request):
 
 @login_required
 def nurse_detail(request, auto_id):
+    logged_in_user = request.user
     nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    if logged_in_user != nurse_detail.user:
+        return render(request, "website/forbidden_page.html", status=403)
     return render(
         request, "nurse_website/nurse_detail.html", {"nurse_detail": nurse_detail}
     )
