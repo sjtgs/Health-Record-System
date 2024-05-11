@@ -2,10 +2,6 @@ from django import forms
 from nurse_app.models import Appointment
 
 
-class NurseUploadForm(forms.Form):
-    file = forms.FileField(label="Select a file ")
-
-
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment

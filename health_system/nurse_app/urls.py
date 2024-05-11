@@ -10,7 +10,6 @@ from nurse_app.views import (
     patient_detail,
     appointment_detail,
     book_appointment,
-    upload_nurse,
 )
 
 nurse_router = DefaultRouter()
@@ -30,5 +29,4 @@ urlpatterns = [
         appointment_detail,
         name="appointment_detail",
     ),
-    path("upload-nurse", upload_nurse, name="upload-nurse"),
 ]

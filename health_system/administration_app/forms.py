@@ -53,6 +53,11 @@ class DoctorForm(forms.ModelForm):
         )
 
 
+# Upload Doctor CSV / EXCEL FILE
+class DoctorUploadForm(forms.Form):
+    file = forms.FileField(label="Select a File ")
+
+
 # Nurse User Form
 class NurseForm(forms.ModelForm):
     class Meta:
@@ -77,6 +82,11 @@ class NurseForm(forms.ModelForm):
         )
 
 
+# Upload Nurse CSV / EXCEL FILE
+class NurseUploadForm(forms.Form):
+    file = forms.FileField(label="Select a File ")
+
+
 # Patient User Form
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -99,3 +109,8 @@ class PatientForm(forms.ModelForm):
             "created_by",
             "updated_at",
         )
+
+
+# Upload Patient CSV / EXCEL FILE
+class PatientUploadForm(forms.Form):
+    file = forms.FileField(label="Select a File ")

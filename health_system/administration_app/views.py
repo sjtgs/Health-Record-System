@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from administration_app.decorators import admin_role_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from administration_app.logger import (
     log_administrator_creation,
     log_doctor_creation,
@@ -17,11 +18,16 @@ from patient_app.models import Patient
 from administration_app.forms import (
     AdministratorForm,
     DoctorForm,
+    DoctorUploadForm,
     NurseForm,
+    NurseUploadForm,
     PatientForm,
+    PatientUploadForm,
 )
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import csv
+from io import TextIOWrapper
 import json
 
 
@@ -298,6 +304,40 @@ def admin_doctor_detail(request, auto_id):
     )
 
 
+# Uploading Doctor User
+@login_required
+@admin_role_required
+def upload_doctor_file(request):
+    if request.method == "POST":
+        form = DoctorUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = TextIOWrapper(request.FILES["file"].file, encoding="utf-8")
+            reader = csv.DictReader(file)
+            for row in reader:
+                doctor = Doctor(
+                    first_name=row["First Name"],
+                    last_name=row["Last Name"],
+                    date_of_birth=row["Date of Birth"],
+                    gender=row["Gender"],
+                    nrc=row["NRC"],
+                    countries_id=row["Country"],
+                    provinces_id=row["Province"],
+                    towns_id=row["Town"],
+                    address=row["Address"],
+                    medical_number=row["Medical Number"],
+                    hospitals_id=row["Hospital"],
+                    specialization=row["Specialization"],
+                    years_of_experience=row["Years of Experience"],
+                    email=row["Email"],
+                    phone_number=row["Phone Number"],
+                )
+                doctor.save()
+            return HttpResponse("File uploaded successfully.")
+    else:
+        form = NurseUploadForm()
+    return render(request, "administration_website/upload_doctor_file.html", {"form": form})
+
+
 # The Function Creates a Nurse User based on the information Entered
 @login_required
 @admin_role_required
@@ -342,6 +382,40 @@ def admin_nurse_detail(request, auto_id):
     )
 
 
+# Uploading Nurse User
+@login_required
+@admin_role_required
+def upload_nurse_file(request):
+    if request.method == "POST":
+        form = NurseUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = TextIOWrapper(request.FILES["file"].file, encoding="utf-8")
+            reader = csv.DictReader(file)
+            for row in reader:
+                nurse = Nurse(
+                    first_name=row["First Name"],
+                    last_name=row["Last Name"],
+                    date_of_birth=row["Date of Birth"],
+                    gender=row["Gender"],
+                    nrc=row["NRC"],
+                    countries_id=row["Country"],
+                    provinces_id=row["Province"],
+                    towns_id=row["Town"],
+                    address=row["Address"],
+                    medical_number=row["Medical Number"],
+                    hospitals_id=row["Hospital"],
+                    specialization=row["Specialization"],
+                    years_of_experience=row["Years of Experience"],
+                    email=row["Email"],
+                    phone_number=row["Phone Number"],
+                )
+                nurse.save()
+            return HttpResponse("File uploaded successfully.")
+    else:
+        form = NurseUploadForm()
+    return render(request, "administration_website/upload_nurse.html", {"form": form})
+
+
 # The Function Creates a Nurse User based on the information Entered
 @login_required
 @admin_role_required
@@ -382,4 +456,37 @@ def admin_patient_detail(request, auto_id):
         request,
         "administration_website/patient_detail.html",
         {"patient_detail": patient_detail},
+    )
+
+
+# Uploading Patient User
+@login_required
+@admin_role_required
+def upload_doctor_file(request):
+    if request.method == "POST":
+        form = PatientUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = TextIOWrapper(request.FILES["file"].file, encoding="utf-8")
+            reader = csv.DictReader(file)
+            for row in reader:
+                patient = Patient(
+                    first_name=row["First Name"],
+                    last_name=row["Last Name"],
+                    date_of_birth=row["Date of Birth"],
+                    gender=row["Gender"],
+                    nrc=row["NRC"],
+                    countries_id=row["Country"],
+                    provinces_id=row["Province"],
+                    towns_id=row["Town"],
+                    address=row["Address"],
+                    hospitals_id=row["Hospital"],
+                    email=row["Email"],
+                    phone_number=row["Phone Number"],
+                )
+                patient.save()
+            return HttpResponse("File uploaded successfully.")
+    else:
+        form = PatientUploadForm()
+    return render(
+        request, "administration_website/upload_patient_file.html", {"form": form}
     )
