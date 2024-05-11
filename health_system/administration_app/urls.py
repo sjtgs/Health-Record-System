@@ -24,6 +24,7 @@ from administration_app.views import (
     patient_form,
     patient_form_edit,
     admin_patient_detail,
+    upload_patient_file,
 )
 
 
@@ -79,7 +80,7 @@ urlpatterns = [
         admin_nurse_detail,
         name="admin-nurse-detail",
     ),
-    path("upload-nurse/", upload_nurse_file, name="upload-nurse"),
+    path("upload-nurse-file/", upload_nurse_file, name="upload-nurse-file"),
     path("patient-form/", patient_form, name="patient-form"),
     path(
         "<int:auto_id>/patient-form-edit/", patient_form_edit, name="patient-form-edit"
@@ -89,4 +90,5 @@ urlpatterns = [
         admin_patient_detail,
         name="admin-patient-detail",
     ),
+    path("upload-patient-file/", upload_patient_file, name="upload-patient-file"),
 ]

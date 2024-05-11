@@ -14,7 +14,7 @@ from administration_app.models import Administrator
 
 from doctor_app.models import Doctor
 from nurse_app.models import Nurse
-from patient_app.models import Patient
+from patient_app.models import *
 from administration_app.forms import (
     AdministratorForm,
     DoctorForm,
@@ -315,27 +315,29 @@ def upload_doctor_file(request):
             reader = csv.DictReader(file)
             for row in reader:
                 doctor = Doctor(
-                    first_name=row["First Name"],
-                    last_name=row["Last Name"],
-                    date_of_birth=row["Date of Birth"],
-                    gender=row["Gender"],
-                    nrc=row["NRC"],
-                    countries_id=row["Country"],
-                    provinces_id=row["Province"],
-                    towns_id=row["Town"],
-                    address=row["Address"],
-                    medical_number=row["Medical Number"],
-                    hospitals_id=row["Hospital"],
-                    specialization=row["Specialization"],
-                    years_of_experience=row["Years of Experience"],
-                    email=row["Email"],
-                    phone_number=row["Phone Number"],
+                    first_name=row["first_name"],
+                    last_name=row["last_name"],
+                    date_of_birth=row["date_of_birth"],
+                    gender=row["gender"],
+                    nrc=row["nrc"],
+                    countries_id=row["countries_id"],
+                    provinces_id=row["provinces_id"],
+                    towns_id=row["towns_id"],
+                    address=row["address"],
+                    medical_number=row["medical_number"],
+                    hospitals_id=row["hospitals_id"],
+                    specialization=row["specialization"],
+                    years_of_experience=row["years_of_experience"],
+                    email=row["email"],
+                    phone_number=row["phone_number"],
                 )
                 doctor.save()
             return HttpResponse("File uploaded successfully.")
     else:
         form = NurseUploadForm()
-    return render(request, "administration_website/upload_doctor_file.html", {"form": form})
+    return render(
+        request, "administration_website/upload_doctor_file.html", {"form": form}
+    )
 
 
 # The Function Creates a Nurse User based on the information Entered
@@ -413,7 +415,9 @@ def upload_nurse_file(request):
             return HttpResponse("File uploaded successfully.")
     else:
         form = NurseUploadForm()
-    return render(request, "administration_website/upload_nurse.html", {"form": form})
+    return render(
+        request, "administration_website/upload_nurse_file.html", {"form": form}
+    )
 
 
 # The Function Creates a Nurse User based on the information Entered
@@ -462,28 +466,44 @@ def admin_patient_detail(request, auto_id):
 # Uploading Patient User
 @login_required
 @admin_role_required
-def upload_doctor_file(request):
+def upload_patient_file(request):
     if request.method == "POST":
         form = PatientUploadForm(request.POST, request.FILES)
         if form.is_valid():
             file = TextIOWrapper(request.FILES["file"].file, encoding="utf-8")
             reader = csv.DictReader(file)
             for row in reader:
+                # Get or create related objects for foreign key fields
+                province = get_object_or_404(Province, pk=row["province_id"])
+                town = get_object_or_404(Town, pk=row["town_id"])
+                hospital = get_object_or_404(MedicalInformation, pk=row["hospital_id"])
+                diagnosis = get_object_or_404(Diagnosis, pk=row["diagnosis_id"])
+                insurance = get_object_or_404(InsuranceCompany, pk=row["insurance_id"])
+
+                # Create a new Patient instance and populate its fields from the CSV row
                 patient = Patient(
-                    first_name=row["First Name"],
-                    last_name=row["Last Name"],
-                    date_of_birth=row["Date of Birth"],
-                    gender=row["Gender"],
-                    nrc=row["NRC"],
-                    countries_id=row["Country"],
-                    provinces_id=row["Province"],
-                    towns_id=row["Town"],
-                    address=row["Address"],
-                    hospitals_id=row["Hospital"],
-                    email=row["Email"],
-                    phone_number=row["Phone Number"],
+                    first_name=row["first_name"],
+                    last_name=row["last_name"],
+                    date_of_birth=row["date_of_birth"],
+                    gender=row["gender"],
+                    nrc=row["nrc"],
+                    patient_type=row["patient_type"],
+                    provinces=province,
+                    towns=town,
+                    address=row["address"],
+                    hospitals=hospital,
+                    medical_history=row["medical_history"],
+                    blood_type=row["blood_type"],
+                    diagnosis=diagnosis,
+                    patient_unit=row["patient_unit"],
+                    treatment_plan=row["treatment_plan"],
+                    prescription=row["prescription"],
+                    insurance=insurance,
+                    email=row["email"],
+                    phone_number=row["phone_number"],
                 )
                 patient.save()
+
             return HttpResponse("File uploaded successfully.")
     else:
         form = PatientUploadForm()
