@@ -145,24 +145,85 @@
                         <!-- Forms -->
                         <!-- Based on the user group show the links below -->
                         {% if user.groups.all.0.name == "Administrator" %}
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#formsLayouts"
-                            aria-expanded="false" aria-controls="collapseLayouts">
+
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseForms"
+                            aria-expanded="false" aria-controls="collapseForms">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
                             Forms
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+
+
                         {% endif %}
 
 
-                        <div class="collapse" id="formsLayouts" aria-labelledby="headingOne"
+
+
+
+                        <!-- User Creation forms  -->
+
+                        <div class="collapse" id="collapseForms" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{% url 'administration-form' %}">Administration Form</a>
-                                <a class="nav-link" href="{% url 'doctor-form' %}">Doctor Form</a>
-                                <a class="nav-link" href="{% url 'nurse-form' %}">Nurse Form</a>
-                                <a class="nav-link" href="{% url 'patient-form' %}">Patient Form</a>
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+
+
+                                <!-- <a class="nav-link" href="{% url 'administration-form' %}">Administration Form</a> -->
+
+                                <!-- Doctor -->
+
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
+                                    Doctor
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{% url 'doctor-form' %}">Doctor Form</a>
+                                        <a class="nav-link" href="{% url 'upload-doctor-file' %}">Upload Doctor Form</a>
+                                    </nav>
+                                </div>
+                                <!-- end -->
+
+                                <!-- Nurse -->
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseNurse" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
+                                    Nurse
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseNurse" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{% url 'nurse-form' %}">Nurse Form</a>
+                                        <a class="nav-link" href="{% url 'upload-nurse-file' %}">Upload Nurse Form</a>
+                                    </nav>
+                                </div>
+                                <!-- end  -->
+
+                                <!-- Patient -->
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapsePatient" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
+                                    Patient
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapsePatient" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{% url 'patient-form' %}">Patient Form</a>
+                                        <a class="nav-link" href="{% url 'upload-patient-file' %}">Upload Patient
+                                            Form</a>
+                                    </nav>
+                                </div>
+                                <!-- end  -->
                             </nav>
                         </div>
+
+
 
                         <!-- End Forms -->
 
@@ -181,7 +242,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Health Record SyStem 2024</div>
+                        <div class="text-muted">Copyright &copy; Health Record SyStem {% now "Y" %}</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
