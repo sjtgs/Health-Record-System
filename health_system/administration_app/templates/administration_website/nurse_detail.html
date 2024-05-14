@@ -10,10 +10,13 @@
                         <div class="row g-0">
                             <div class="col-md-4 gradient-custom text-center text-white"
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                    alt="Avatar" class="img-fluid my-5" style="width: 100px;" />
-                                <h5 style="color: black;">{{nurse_detail.first_name}} {{nurse_detail.last_name}}</h5>
-                                <p style="color: black;"> Nurse </p>
+                                {% if nurse_image %}
+                                <img class="img-fluid my-5 img-thumbnail" src="{{ nurse_image.image.url }}"
+                                    alt="Nurse Image" style="width: 100px;" />
+                                {% endif %}
+                                <p style="color: black; margin-top: -10%;">Nurse - {{nurse_detail.first_name}}
+                                    {{nurse_detail.last_name}}
+                                </p>
                                 <i class="far fa-edit mb-5"></i>
                             </div>
                             <div class="col-md-8">

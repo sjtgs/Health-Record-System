@@ -12,16 +12,19 @@ from administration_app.logger import (
 from django.shortcuts import redirect
 from administration_app.models import Administrator
 
-from doctor_app.models import Doctor
-from nurse_app.models import Nurse
+from doctor_app.models import Doctor, DoctorImage
+from nurse_app.models import Nurse, NurseImage
 from patient_app.models import *
 from administration_app.forms import (
     AdministratorForm,
     DoctorForm,
+    DoctorImageForm,
     DoctorUploadForm,
     NurseForm,
+    NurseImageForm,
     NurseUploadForm,
     PatientForm,
+    PatientImageForm,
     PatientUploadForm,
 )
 from django.db.models import Count
@@ -265,15 +268,23 @@ def admin_administrator_detail(request, auto_id):
 def doctor_form(request):
     if request.method == "POST":
         form = DoctorForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            log_doctor_creation(post)
+        image_form = DoctorImageForm(request.POST, request.FILES)
+        if form.is_valid() and image_form.is_valid():
+            doctor_instance = form.save()  # Save Doctor instance
+            image_instance = image_form.save(commit=False)
+            image_instance.doctor = doctor_instance  # Associate image with doctor
+            image_instance.save()
+            log_doctor_creation(doctor_instance)
             # Redirect to admin-doctor-detail with auto_id parameter
-            return redirect("admin-doctor-detail", auto_id=post.auto_id)
+            return redirect("admin-doctor-detail", auto_id=doctor_instance.auto_id)
     else:
         form = DoctorForm()
-    return render(request, "administration_website/doctor_form.html", {"form": form})
+        image_form = DoctorImageForm()
+    return render(
+        request,
+        "administration_website/doctor_form.html",
+        {"form": form, "image_form": image_form},
+    )
 
 
 # The Function Edits a Doctors Information.
@@ -297,10 +308,11 @@ def doctor_form_edit(request, auto_id):
 @admin_role_required
 def admin_doctor_detail(request, auto_id):
     doctor_detail = get_object_or_404(Doctor, auto_id=auto_id)
+    doctor_image = DoctorImage.objects.filter(doctor=doctor_detail).first()
     return render(
         request,
         "administration_website/doctor_detail.html",
-        {"doctor_detail": doctor_detail},
+        {"doctor_detail": doctor_detail, "doctor_image": doctor_image},
     )
 
 
@@ -346,14 +358,22 @@ def upload_doctor_file(request):
 def nurse_form(request):
     if request.method == "POST":
         form = NurseForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            log_nurse_creation(post)
-            return redirect("admin-nurse-detail", auto_id=post.auto_id)
+        image_form = NurseImageForm(request.POST, request.FILES)
+        if form.is_valid() and image_form.is_valid():
+            nurse_instance = form.save()  # Save Nurse instance
+            image_instance = image_form.save(commit=False)
+            image_instance.nurse = nurse_instance  # Associate image with nurse
+            image_instance.save()
+            log_nurse_creation(nurse_instance)
+            return redirect("admin-nurse-detail", auto_id=nurse_instance.auto_id)
     else:
         form = NurseForm()
-    return render(request, "administration_website/nurse_form.html", {"form": form})
+        image_form = NurseImageForm
+    return render(
+        request,
+        "administration_website/nurse_form.html",
+        {"form": form, "image_form": image_form},
+    )
 
 
 # The Function Edits a Nurses Information.
@@ -377,10 +397,11 @@ def nurse_form_edit(request, auto_id):
 @admin_role_required
 def admin_nurse_detail(request, auto_id):
     nurse_detail = get_object_or_404(Nurse, auto_id=auto_id)
+    nurse_image = NurseImage.objects.filter(nurse=nurse_detail).first()
     return render(
         request,
         "administration_website/nurse_detail.html",
-        {"nurse_detail": nurse_detail},
+        {"nurse_detail": nurse_detail, "nurse_image": nurse_image},
     )
 
 
@@ -426,14 +447,22 @@ def upload_nurse_file(request):
 def patient_form(request):
     if request.method == "POST":
         form = PatientForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            log_patient_creation(post)
-            return redirect("admin-patient-detail", auto_id=post.auto_id)
+        image_form = PatientImageForm(request.POST, request.FILES)
+        if form.is_valid() and image_form.is_valid():
+            patient_instance = form.save()  # Save Patient instance
+            image_instance = image_form.save(commit=False)
+            image_instance.patient = patient_instance  # Associate image with nurse
+            image_instance.save()
+            log_patient_creation(patient_instance)
+            return redirect("admin-patient-detail", auto_id=patient_instance.auto_id)
     else:
         form = PatientForm()
-    return render(request, "administration_website/patient_form.html", {"form": form})
+        image_form = PatientImageForm()
+    return render(
+        request,
+        "administration_website/patient_form.html",
+        {"form": form, "image_form": image_form},
+    )
 
 
 # The Function Edits a Nurses Information.
@@ -456,10 +485,11 @@ def patient_form_edit(request, auto_id):
 @admin_role_required
 def admin_patient_detail(request, auto_id):
     patient_detail = get_object_or_404(Patient, auto_id=auto_id)
+    patient_image = PatientImage.objects.filter(patient=patient_detail).first()
     return render(
         request,
         "administration_website/patient_detail.html",
-        {"patient_detail": patient_detail},
+        {"patient_detail": patient_detail, "patient_image": patient_image},
     )
 
 
@@ -510,3 +540,32 @@ def upload_patient_file(request):
     return render(
         request, "administration_website/upload_patient_file.html", {"form": form}
     )
+
+
+# @login_required
+# @admin_role_required
+# def doctor_form(request):
+#     if request.method == "POST":
+#         form = DoctorForm(request.POST)
+#         image_form = DoctorImageForm(request.POST, request.FILES)
+#         if form.is_valid() and image_form.is_valid():
+#             post = form.save(commit=False)
+#             # post.save()
+#             image_instance = image_form.save(commit=False)
+#             image_instance.post = post  # Associate image with doctor
+#             image_instance.save()
+#             log_doctor_creation(post)
+#             # Redirect to admin-doctor-detail with auto_id parameter
+#             return redirect(
+#                 "admin-doctor-detail",
+#                 # auto_id=post.auto_id,
+#                 doctor_id=image_instance.id,
+#             )
+#     else:
+#         form = DoctorForm()
+#         image_form = DoctorImageForm()
+#     return render(
+#         request,
+#         "administration_website/doctor_form.html",
+#         {"form": form, "image_form": image_form},
+#     )

@@ -10,11 +10,14 @@
                         <div class="row g-0">
                             <div class="col-md-4 gradient-custom text-center text-white"
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                    alt="Avatar" class="img-fluid my-5" style="width: 100px;" />
-                                <h5 style="color: black;">{{doctor_detail.first_name}} {{doctor_detail.last_name}}</h5>
-                                <p style="color: black;">Doctor</p>
-                                <i class="far fa-edit mb-5"></i>
+                                {% if doctor_image %}
+                                <img class="img-fluid my-5 img-thumbnail" src="{{ doctor_image.image.url }}"
+                                    alt="Doctor Image" style="width: 100px;" />
+                                {% endif %}
+                                <p style="color: black; margin-top: -10%;">MD - {{doctor_detail.first_name}}
+                                    {{doctor_detail.last_name}}
+                                </p>
+                                <p style="color: black; margin-top: -6%;">{{doctor_detail.specialization}}</p>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-4">

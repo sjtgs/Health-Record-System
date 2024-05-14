@@ -68,7 +68,7 @@
                         <!-- Based on the user group show the links below -->
                         <!-- {% if user.groups.all.0.name == "Administrator" or user.groups.all.0.name == "Nurse" %} -->
                         {% if user.groups.all.0.name == "Administrator" %}
-                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <div class="sb-sidenav-menu-heading">Chart</div>
 
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
@@ -145,7 +145,7 @@
                         <!-- Forms -->
                         <!-- Based on the user group show the links below -->
                         {% if user.groups.all.0.name == "Administrator" %}
-
+                        <div class="sb-sidenav-menu-heading">Forms</div>
 
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseForms"
                             aria-expanded="false" aria-controls="collapseForms">
@@ -156,10 +156,6 @@
 
 
                         {% endif %}
-
-
-
-
 
                         <!-- User Creation forms  -->
 
