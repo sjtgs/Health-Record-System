@@ -12,3 +12,4 @@ django-leaflet
 django-redis
 reportlab
 virtualenvwrapper
+drf-yasg
