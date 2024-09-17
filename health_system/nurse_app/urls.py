@@ -8,8 +8,8 @@ from nurse_app.views import (
     # nurse_dashboard,
     nurse_detail,
     patient_detail,
-    appointment_detail,
-    book_appointment,
+    # appointment_detail,
+    # book_appointment,
 )
 
 nurse_router = DefaultRouter()
@@ -23,10 +23,4 @@ urlpatterns = [
     path("patient-records/", patient_records, name="patient-records"),
     path("nurse-detail/<int:auto_id>/", nurse_detail, name="nurse-detail"),
     path("patient-detail/<int:auto_id>/", patient_detail, name="patient-detail"),
-    path("book-appointment/", book_appointment, name="book_appointment"),
-    path(
-        "appointment/<int:appointment_id>/",
-        appointment_detail,
-        name="appointment_detail",
-    ),
 ]

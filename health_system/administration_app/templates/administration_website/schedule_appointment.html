@@ -1,0 +1,37 @@
+{% extends 'website/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<main>
+    <div class="container-fluid px-4">
+
+        <div id="calendar"></div>
+        <h2>Schedule Appointment for {{ patient.first_name }} {{ patient.last_name }}</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Schedule Appointment</button>
+        </form>
+
+        <a href="{% url 'patient_detail' patient.auto_id %}">Back to Patient Details</a>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    events: '/events/',  // URL to fetch the appointment events
+                    eventClick: function (info) {
+                        alert(info.event.title + ': ' + info.event.extendedProps.description);  // Display appointment details
+                    }
+                });
+                calendar.render();
+            });
+        </script>
+    </div>
+</main>
+
+{% endblock %}

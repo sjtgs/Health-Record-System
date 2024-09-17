@@ -29,6 +29,7 @@ urlpatterns = [
     path("nurse/", include("nurse_app.urls")),
     path("doctor/", include("doctor_app.urls")),
     path("patient/", include("patient_app.urls")),
+    path("appointment/", include("appointment_app.urls")),
     # path("api/doctors/", include("doctor_app.urls")),
     # path("api/nurses/", include("nurse_app.urls")),
     # path("api/patients/", include("patient_app.urls")),
