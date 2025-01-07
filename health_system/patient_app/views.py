@@ -3,12 +3,15 @@ from django.contrib.auth.decorators import login_required
 from patient_app.decorators import roles_required
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+import os
 from rest_framework import viewsets
 from patient_app.serializers import PatientSerializer
 from patient_app.models import Patient, OCRData
+
 from patient_app.forms import OCRImageUploadForm
 from patient_app.utils import extract_text_from_image
-
+from google.cloud import vision
+from django.conf import settings
 
 @login_required
 @roles_required
@@ -47,15 +50,26 @@ def patient_detail(request, auto_id):
 
 
 # Testing OCR view 
+def extract_text_from_image(image_path):
+    # Google Vision API text extraction logic
+    client = vision.ImageAnnotatorClient()
+    with open(image_path, 'rb') as image_file:
+        content = image_file.read()
+        image = vision.Image(content=content)
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+    return texts[0].description if texts else "No text found"
+
 def upload_and_extract_text(request):
     if request.method == 'POST':
         form = OCRImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            patient_id = form.cleaned_data['patient_id']
+            # Fetch the patient instance using the patient_id
+            patient = form.cleaned_data['patient_id']  # This will return the selected Patient object
+            
+            # Process the uploaded image
             image = form.cleaned_data['image']
-
-            # Save the image temporarily
-            image_path = f"uploads/{image.name}"
+            image_path = f"images/{image.name}"
             with open(image_path, 'wb+') as destination:
                 for chunk in image.chunks():
                     destination.write(chunk)
@@ -63,9 +77,11 @@ def upload_and_extract_text(request):
             # Extract text using Google Vision API
             extracted_text = extract_text_from_image(image_path)
 
-            # Save to database
-            patient = get_object_or_404(Patient, id=patient_id)
-            OCRData.objects.create(patient=patient, extracted_text=extracted_text)
+            # Save the OCR data
+            OCRData.objects.create(
+                patientdata=patient,
+                extracted_note=extracted_text
+            )
 
             # Clean up the temporary file
             os.remove(image_path)
@@ -74,7 +90,6 @@ def upload_and_extract_text(request):
                 "message": "Text extracted and saved successfully",
                 "extracted_text": extracted_text
             })
-
     else:
         form = OCRImageUploadForm()
 

@@ -11,17 +11,19 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-
+from dotenv import load_dotenv
 
 from pathlib import Path
-from decouple import config
+# from decouple import config
+load_dotenv()
 
 
-# enviroment file 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config("GOOGLE_APPLICATION_CREDENTIALS")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Load environment variables from .env file
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(BASE_DIR, os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
 
 # LOG_DIR = os.path.join(BASE_DIR, "logs")
 

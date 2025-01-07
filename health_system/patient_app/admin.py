@@ -9,6 +9,7 @@ from patient_app.models import (
     Diagnosis,
     Patient,
     PatientImage,
+    OCRData,
 )
 
 
@@ -109,3 +110,5 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ("patient", "image", "description", "uploaded_at")
     search_fields = ("patient__first_name", "patient__last_name", "description")
     list_filter = ("uploaded_at",)
+
+admin.site.register(OCRData)

@@ -2,8 +2,6 @@ from google.cloud import vision
 import os
 
 # Set up Google Cloud credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'firebase.json'
-
 def extract_text_from_image(image_path):
     """Uses Google Cloud Vision API to extract text from an image."""
     client = vision.ImageAnnotatorClient()
