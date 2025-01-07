@@ -7,9 +7,11 @@ django-filter
 django-rest-swagger
 bootstrap4
 crispy-bootstrap4 
-crispy_bootstrap4
 django-leaflet
 django-redis
 reportlab
 virtualenvwrapper
 drf-yasg
+google-cloud
+google-cloud-vision
+firebase-admin

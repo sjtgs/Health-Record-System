@@ -5,6 +5,7 @@ from patient_app.views import (
     PatientViewSet,
     view_patient_records,
     patient_detail,
+    upload_and_extract_text,
 )
 
 patient_router = DefaultRouter()
@@ -14,4 +15,5 @@ urlpatterns = [
     path("patients/", include(patient_router.urls)),
     path("patient-records/", view_patient_records, name="patient-dashboard"),
     path("patient-detail/<int:auto_id>/", patient_detail, name="patient-detail"),
+    path('upload-ocr/', upload_and_extract_text, name='upload_ocr'),
 ]

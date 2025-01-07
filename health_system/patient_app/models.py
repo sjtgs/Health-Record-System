@@ -107,3 +107,12 @@ class PatientImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.patient.first_name} {self.patient.last_name}"
+    
+# Add patient note from the Doctor 
+class OCRData(models.Model):
+    patientdata = models.ForeignKey(Patient, on_delete=models.CASCADE,  related_name='ocr_data')
+    extracted_note = models.TextField 
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Extracted Patient Note{self.patientdata.first_name} {self.patientdata.last_name} at {self.uploaded_at}"
