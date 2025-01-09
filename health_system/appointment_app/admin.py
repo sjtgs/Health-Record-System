@@ -1,5 +1,5 @@
 from django.contrib import admin
-from appointment_app.models import Appointment
+from appointment_app.models import Appointment ,PatientMedicalInfo, MedicalNotes
 
 
 # Register your models here.
@@ -18,3 +18,6 @@ class AppointmentAdmin(admin.ModelAdmin):
         "time," "reason",
     )
     list_filter = ("created_at",)
+
+admin.site.register(PatientMedicalInfo)
+admin.site.register(MedicalNotes)
