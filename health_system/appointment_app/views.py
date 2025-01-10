@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse , HttpResponse
 import os
 from django.contrib.auth.decorators import login_required
 from patient_app.models import Patient
@@ -31,6 +31,27 @@ def schedule_appointment(request, auto_id):
             request,
             "administration_website/schedule_appointment.html",
             {"form": form, "patient": patient},
+        )
+
+
+#  Created Patient Medical Infomation Function
+def patient_medical_info(request):
+    patient_info = PatientMedicalInfo.objects.all()
+    if request.method == "POST":
+        form = PatientMedicalInfoForms(request.POST)
+        if form.is_valid():
+            patientInfo = form.save(commit=False)
+            patientInfo.patient_info = patient_info
+            patientInfo.save()
+            return redirect(
+                "appointment_website/patient_medical_info.html", 
+            )
+        else:
+            form = PatientMedicalInfoForms()
+        return render(
+            request,
+            "administration_website/schedule_appointment.html",
+            {"form": form, "patient_info": patient_info},
         )
 
 

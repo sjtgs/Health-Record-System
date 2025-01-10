@@ -2,7 +2,7 @@ from django.contrib import admin
 from appointment_app.models import Appointment ,PatientMedicalInfo, MedicalNotes
 
 
-# Register your models here.
+# Appintment
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = (

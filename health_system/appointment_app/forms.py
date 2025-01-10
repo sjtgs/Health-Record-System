@@ -6,13 +6,13 @@ from appointment_app.models import Appointment, PatientMedicalInfo , MedicalNote
 class AppointmentForms(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ["date", "time", "reason"]
+        fields = ["patient","date", "time", "reason"]
 
 # Created Patient Medical Information Form 
 class PatientMedicalInfoForms(forms.ModelForm):
     class Meta:
         model = PatientMedicalInfo
-        fields = ["patient", "weight", "height", "blood_pressure"]
+        fields = ["patient", "weight", "height", "blood_pressure", "hiv_status"]
 
 
 # Created Doctors Medical Notes 
