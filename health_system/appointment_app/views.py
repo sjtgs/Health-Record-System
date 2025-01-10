@@ -12,47 +12,48 @@ from django.conf import settings
 
 
 # Create Schedule Appointment Function
-@login_required
-def schedule_appointment(request, auto_id):
-    patient = Patient.objects.get(auto_id=auto_id)
-    if request.method == "POST":
-        form = AppointmentForms(request.POST)
-        if form.is_valid():
-            appointment = form.save(commit=False)
-            appointment.patient = patient
-            appointment.doctor = request.user
-            appointment.save()
-            return redirect(
-                "administration_website/patient_detail", auto_id=patient.auto_id
-            )
-        else:
-            form = AppointmentForms()
-        return render(
-            request,
-            "administration_website/schedule_appointment.html",
-            {"form": form, "patient": patient},
-        )
+# @login_required
+# def schedule_appointment(request, auto_id):
+#     patient = Patient.objects.get(auto_id=auto_id)
+#     if request.method == "POST":
+#         form = AppointmentForms(request.POST)
+#         if form.is_valid():
+#             appointment = form.save(commit=False)
+#             appointment.patient = patient
+#             appointment.doctor = request.user
+#             appointment.save()
+#             return redirect(
+#                 "administration_website/patient_detail", auto_id=patient.auto_id
+#             )
+#         else:
+#             form = AppointmentForms()
+#         return render(
+#             request,
+#             "administration_website/schedule_appointment.html",
+#             {"form": form, "patient": patient},
+#         )
 
 
-#  Created Patient Medical Infomation Function
+#  Patient Medical Infomation Function
 def patient_medical_info(request):
     patient_info = PatientMedicalInfo.objects.all()
+    
     if request.method == "POST":
         form = PatientMedicalInfoForms(request.POST)
         if form.is_valid():
             patientInfo = form.save(commit=False)
-            patientInfo.patient_info = patient_info
+            patientInfo.patient_info = patient_info  # Ensure this line aligns with your model
             patientInfo.save()
-            return redirect(
-                "appointment_website/patient_medical_info.html", 
-            )
-        else:
-            form = PatientMedicalInfoForms()
-        return render(
-            request,
-            "administration_website/schedule_appointment.html",
-            {"form": form, "patient_info": patient_info},
-        )
+            return redirect("appointment_website/patient_medical_info.html")
+    else:
+        form = PatientMedicalInfoForms()  # This initializes the form for non-POST requests
+    
+    # Render the template for both GET and invalid POST requests
+    return render(
+        request,
+        "appointment_website/patient_medical_info.html",
+        {"form": form, "patient_info": patient_info},
+    )
 
 
 # Create a Funtion to list appointment events
@@ -118,5 +119,5 @@ def upload_and_extract_text(request):
     else:
         form = MedicalNotesForm()
 
-    return render(request, 'appointment_website/medical_notes.html', {'form': form})
+    return render(request, 'appointment_website/doctors_medical_notes.html', {'form': form})
 
