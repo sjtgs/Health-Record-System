@@ -4,7 +4,7 @@ from doctor_app.models import Doctor
 from patient_app.models import Patient
 
 
-# Create your models here.
+# Patient Appointmnt 
 class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
@@ -19,12 +19,16 @@ class Appointment(models.Model):
 
 # Patient Information Appointment 
 class PatientMedicalInfo(models.Model):
+    HIV_CHOICE = [
+        ("P", "Postive"),
+        ("N", "Negative"),
+    ]
     patient =  models.ForeignKey(Patient, on_delete=models.CASCADE)
     weight = models.IntegerField()
     height = models.IntegerField()
     blood_pressure = models.IntegerField()
+    hiv_status = models.CharField(max_length=3, choices=HIV_CHOICE)
     
-
     def __str__(self):
         return f"Patient Medical Information {self.patient.first_name} {self.patient.last_name} "
 
@@ -33,8 +37,9 @@ class MedicalNotes(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     patient_name = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patient_info = models.ForeignKey(PatientMedicalInfo, on_delete=models.CASCADE)
+    appointment_notes = models.TextField()
     doctor_notes = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Doctor notes after Meeting with the Patient {self.patient_name.first_name} {self.patient_name.last_name} {self.patient_info.weight} {self.patient_info.height} {self.patient_info.blood_pressure} {self.doctor_notes} {self.doctor.last_name}"
+        return f"Doctor notes after Meeting with the Patient {self.patient_name.first_name} {self.patient_name.last_name} {self.patient_info.weight} {self.patient_info.height} {self.patient_info.blood_pressure} {self.patient_info.hiv_status} {self.appointment_notes} {self.doctor_notes} {self.doctor.last_name}"
