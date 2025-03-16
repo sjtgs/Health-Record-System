@@ -1,22 +1,21 @@
 #!/bin/bash
 
-# Create Virtual Envirmonent called healthvenv
+# Create Virtual Environment called healthenv
 if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu"* ]]; then
-    python3 -m venv healthvenv
+    python3 -m venv healthenv
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
-    python -m venv healthvenv
+    python -m venv healthenv
 fi
 
 # Activate virtual environment
 if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu"* ]]; then
-    source healthvenv/bin/activate
+    source healthenv/bin/activate
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
-    healthvenv\Scripts\activate
+    source healthenv/Scripts/activate
 fi
 
-
 # Install Application Requirements 
-python -m pip install --upgrade pippython -m pip install --upgrade pip
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 # Apply Make Migrations 
